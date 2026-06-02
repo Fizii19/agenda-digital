@@ -1,37 +1,35 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { School, Mail, Lock, ArrowRight, ChevronDown } from 'lucide-react';
+import { School, User, Lock, ArrowRight, ChevronDown } from 'lucide-react';
 import { Role } from '@/lib/types';
-import { users } from '@/lib/mock-data';
+import { loginAction } from '@/app/actions/agenda';
 
-const roleLabels: Record<Role, string> = { admin: 'Admin Sekolah', sekretaris: 'Sekretaris', walikelas: 'Wali Kelas', pimpinan: 'Pimpinan Sekolah', siswa: 'Siswa' };
-const roleDashboards: Record<Role, string> = { admin: '/admin', sekretaris: '/sekretaris', walikelas: '/walikelas', pimpinan: '/pimpinan', siswa: '/siswa' };
+const roleLabels: Record<Role, string> = { admin: 'Admin Sekolah', sekretaris: 'Sekretaris', walikelas: 'Wali Kelas', pimpinan: 'Pimpinan Sekolah', siswa: 'Siswa', guru: 'Guru Mapel' };
+const roleDashboards: Record<Role, string> = { admin: '/admin', sekretaris: '/sekretaris', walikelas: '/walikelas', pimpinan: '/pimpinan', siswa: '/siswa', guru: '/guru' };
 
 export default function LoginPage() {
   const router = useRouter();
   const [selectedRole, setSelectedRole] = useState<Role>('admin');
-  const [email, setEmail] = useState('');
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [showRoleDropdown, setShowRoleDropdown] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    setTimeout(() => {
-      const user = users.find(u => u.role === selectedRole);
-      if (user && email && password) {
-        document.cookie = `userRole=${selectedRole}; path=/`;
-        document.cookie = `userName=${user.name}; path=/`;
-        router.push(roleDashboards[selectedRole]);
-      } else {
-        setError('Email atau password salah. Silakan coba lagi.');
-      }
+
+    const result = await loginAction(identifier, selectedRole);
+
+    if (result.success && result.role) {
+      router.push(roleDashboards[result.role]);
+    } else {
+      setError(result.error || 'Login gagal.');
       setIsLoading(false);
-    }, 800);
+    }
   };
 
   return (
@@ -80,11 +78,11 @@ export default function LoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">NIS / NIP</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
-                  placeholder="nama@sekolah.id" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 placeholder:text-gray-400 focus:border-[#4F46E5] focus:ring-2 focus:ring-indigo-100 outline-none transition-all" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input type="text" value={identifier} onChange={(e) => setIdentifier(e.target.value)}
+                  placeholder="Masukkan NIS atau NIP" className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 placeholder:text-gray-400 focus:border-[#4F46E5] focus:ring-2 focus:ring-indigo-100 outline-none transition-all" />
               </div>
             </div>
             <div>

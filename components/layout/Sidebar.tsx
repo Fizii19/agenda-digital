@@ -5,9 +5,8 @@ import { cn } from '@/lib/utils';
 import { Role } from '@/lib/types';
 import {
   LayoutDashboard, Users, GraduationCap, BookOpen, Calendar, Monitor, ClipboardList,
-  UserCheck, FileText, Printer, BarChart3, Eye, Clock, CheckSquare, School, X,
+  UserCheck, FileText, Printer, BarChart3, Eye, Clock, CheckSquare, School, X, DoorOpen,
 } from 'lucide-react';
-import { useState } from 'react';
 
 interface SidebarProps {
   role: Role;
@@ -23,15 +22,16 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { icon: LayoutDashboard, label: 'Dashboard', href: '', roles: ['admin', 'sekretaris', 'walikelas', 'pimpinan', 'siswa'] },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '', roles: ['admin', 'sekretaris', 'walikelas', 'pimpinan', 'siswa', 'guru'] },
   { icon: School, label: 'Manajemen Kelas', href: '/kelas', roles: ['admin'] },
   { icon: Users, label: 'Manajemen Guru', href: '/guru', roles: ['admin'] },
   { icon: GraduationCap, label: 'Manajemen Siswa', href: '/siswa', roles: ['admin'] },
+  { icon: DoorOpen, label: 'Manajemen Ruangan', href: '/ruangan', roles: ['admin'] },
   { icon: BookOpen, label: 'Mata Pelajaran', href: '/mapel', roles: ['admin'] },
   { icon: Calendar, label: 'Jadwal Pelajaran', href: '/jadwal', roles: ['admin'] },
-  { icon: Monitor, label: 'Monitoring Kelas', href: '/monitoring', roles: ['admin', 'pimpinan'] },
-  { icon: ClipboardList, label: 'Input Agenda', href: '/agenda', roles: ['sekretaris'] },
-  { icon: UserCheck, label: 'Presensi Siswa', href: '/presensi', roles: ['sekretaris'] },
+  { icon: Monitor, label: 'Monitoring Kelas', href: '/monitoring', roles: ['pimpinan'] },
+  { icon: ClipboardList, label: 'Input Agenda', href: '/agenda', roles: ['sekretaris', 'guru'] },
+  { icon: UserCheck, label: 'Presensi Siswa', href: '/presensi', roles: ['sekretaris', 'guru'] },
   { icon: Printer, label: 'Cetak Laporan', href: '/laporan', roles: ['sekretaris'] },
   { icon: FileText, label: 'Laporan Presensi', href: '/laporan', roles: ['walikelas'] },
   { icon: Eye, label: 'Monitoring Jurnal', href: '/monitoring', roles: ['walikelas'] },
@@ -41,7 +41,7 @@ const menuItems: MenuItem[] = [
 ];
 
 function getRoleBasePath(role: Role): string {
-  const mapping: Record<Role, string> = { admin: '/admin', sekretaris: '/sekretaris', walikelas: '/walikelas', pimpinan: '/pimpinan', siswa: '/siswa' };
+  const mapping: Record<Role, string> = { admin: '/admin', sekretaris: '/sekretaris', walikelas: '/walikelas', pimpinan: '/pimpinan', siswa: '/siswa', guru: '/guru' };
   return mapping[role];
 }
 

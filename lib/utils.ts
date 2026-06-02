@@ -54,3 +54,28 @@ export function getStatusColor(status: string): string {
       return 'bg-gray-100 text-gray-700 border-gray-200';
   }
 }
+
+/**
+ * Extracts Academic Year from NIS (e.g., "2425001" -> "2024/2025")
+ * Falls back to a default value if NIS is invalid (e.g., NISN starting with 00)
+ */
+export function getYearFromNIS(nis?: string | null, fallbackYear: string = '2025/2026'): string {
+  if (!nis || nis.startsWith('00') || nis.length < 4) {
+    return fallbackYear;
+  }
+
+  try {
+    const prefix = nis.substring(0, 4);
+    const year1 = "20" + prefix.substring(0, 2);
+    const year2 = "20" + prefix.substring(2, 4);
+    
+    // Simple validation: check if they are numbers
+    if (isNaN(Number(year1)) || isNaN(Number(year2))) {
+      return fallbackYear;
+    }
+    
+    return `${year1}/${year2}`;
+  } catch (e) {
+    return fallbackYear;
+  }
+}

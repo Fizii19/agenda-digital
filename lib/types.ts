@@ -1,9 +1,11 @@
-export type Role = 'admin' | 'sekretaris' | 'walikelas' | 'pimpinan' | 'siswa';
+export type Role = 'admin' | 'sekretaris' | 'walikelas' | 'pimpinan' | 'siswa' | 'guru';
 
 export interface User {
   id: string;
   name: string;
   email: string;
+  nis?: string;
+  nip?: string;
   role: Role;
   avatar?: string;
   kelas?: string;
@@ -17,6 +19,27 @@ export interface Kelas {
   waliKelas: string;
   jumlahSiswa: number;
   tahunAjaran: string;
+  tahunAjaranId?: string | null;
+}
+
+export interface TahunAjaran {
+  id: string;
+  nama: string;
+  aktif: boolean;
+}
+
+export interface GuruOption {
+  id: string;
+  name: string;
+  nip?: string | null;
+}
+
+export interface Ruangan {
+  id: string;
+  nama: string;
+  tipe: string;
+  kapasitas?: number | null;
+  aktif: boolean;
 }
 
 export interface Guru {
@@ -62,14 +85,18 @@ export interface Jadwal {
   ruangan: string;
 }
 
+export interface AgendaItem {
+  jamMulai: string;
+  jamSelesai: string;
+  kegiatan: string;
+  keterangan?: string;
+}
+
 export interface Agenda {
   id: string;
-  judul: string;
-  deskripsi: string;
   kelas: string;
   tanggal: string;
-  kategori: 'Pelajaran' | 'Ujian' | 'Tugas' | 'Kegiatan' | 'Lainnya';
-  status: 'Terjadwal' | 'Berlangsung' | 'Selesai' | 'Dibatalkan';
+  items: AgendaItem[];
   createdBy: string;
   createdAt: string;
 }

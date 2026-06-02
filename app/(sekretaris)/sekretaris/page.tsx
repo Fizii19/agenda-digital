@@ -1,5 +1,5 @@
 'use client';
-import { ClipboardList, CheckCircle, Clock, FileText, Plus } from 'lucide-react';
+import { ClipboardList, CheckCircle, Clock, FileText, Plus, Calendar as CalendarIcon } from 'lucide-react';
 import StatCard from '@/components/shared/StatCard';
 import Card from '@/components/ui/Card';
 import Table from '@/components/ui/Table';
@@ -26,15 +26,19 @@ export default function SekretarisDashboard() {
 
       <Card>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-gray-800">Daftar Agenda Kelas</h3>
+          <h3 className="text-base font-semibold text-gray-800">Daftar Agenda Kelas Harian</h3>
           <Link href="/sekretaris/agenda"><Button variant="outline" size="sm">Lihat Semua</Button></Link>
         </div>
         <Table columns={[
-          { key: 'judul', header: 'Judul Agenda', render: (a: Agenda) => <span className="font-medium">{a.judul}</span> },
+          { key: 'tanggal', header: 'Tanggal', render: (a: Agenda) => (
+            <div className="flex items-center gap-2">
+              <CalendarIcon className="w-4 h-4 text-gray-400" />
+              <span className="font-medium text-gray-800">{formatTanggalPendek(a.tanggal)}</span>
+            </div>
+          )},
           { key: 'kelas', header: 'Kelas' },
-          { key: 'kategori', header: 'Kategori', render: (a: Agenda) => <Badge status={a.kategori} /> },
-          { key: 'tanggal', header: 'Tanggal', render: (a: Agenda) => formatTanggalPendek(a.tanggal) },
-          { key: 'status', header: 'Status', render: (a: Agenda) => <Badge status={a.status} /> },
+          { key: 'items', header: 'Jumlah Kegiatan', render: (a: Agenda) => <Badge status={`${a.items.length} Kegiatan`} className="bg-indigo-50 text-[#4F46E5] border-indigo-100" /> },
+          { key: 'createdBy', header: 'Input Oleh' },
         ]} data={agendaList} keyField="id" />
       </Card>
     </div>

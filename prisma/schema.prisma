@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model agenda {
+  id         String       @id
+  kelas      String
+  tanggal    String
+  createdBy  String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime
+  user       user         @relation(fields: [createdBy], references: [id], map: "Agenda_createdBy_fkey")
+  agendaitem agendaitem[]
+
+  @@index([createdBy], map: "Agenda_createdBy_fkey")
+}
+
+model agendaitem {
+  id         String  @id
+  jamMulai   String
+  jamSelesai String
+  kegiatan   String
+  keterangan String?
+  agendaId   String
+  agenda     agenda  @relation(fields: [agendaId], references: [id], onDelete: Cascade, map: "AgendaItem_agendaId_fkey")
+
+  @@index([agendaId], map: "AgendaItem_agendaId_fkey")
+}
+
+model kelas {
+  id             String        @id
+  nama           String        @unique(map: "Kelas_nama_key")
+  tingkat        Int
+  jurusan        String
+  waliKelas      String
+  jumlahSiswa    Int
+  tahunAjaran    String
+  tahunAjaranId  String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime
+  tahunajaran    tahunajaran?  @relation(fields: [tahunAjaranId], references: [id], onDelete: SetNull, map: "Kelas_tahunAjaranId_fkey")
+  subjects       subject[]
+
+  @@index([tahunAjaranId], map: "Kelas_tahunAjaranId_fkey")
+}
+
+model tahunajaran {
+  id        String   @id
+  nama      String   @unique(map: "TahunAjaran_nama_key")
+  aktif     Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  kelas     kelas[]
+}
+
+model subject {
+  id        String   @id
+  nama      String
+  kode      String?
+  guruId    String
+  kelasId   String
+  jam       Int      @default(2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  guru      user     @relation(fields: [guruId], references: [id], map: "Subject_guruId_fkey")
+  kelas     kelas    @relation(fields: [kelasId], references: [id], map: "Subject_kelasId_fkey")
+  schedules schedule[]
+
+  @@unique([nama, kelasId], map: "Subject_nama_kelasId_key")
+  @@index([guruId], map: "Subject_guruId_fkey")
+  @@index([kelasId], map: "Subject_kelasId_fkey")
+}
+
+model ruangan {
+  id        String   @id
+  nama      String   @unique(map: "Ruangan_nama_key")
+  tipe      String
+  kapasitas Int?
+  aktif     Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  schedules schedule[]
+}
+
+model schedule {
+  id          String   @id
+  hari        String   // Senin, Selasa, Rabu, Kamis, Jumat, Sabtu
+  jamMulai    String   // HH:mm
+  jamSelesai  String   // HH:mm
+  subjectId   String
+  ruanganId   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  subject     subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade, map: "Schedule_subjectId_fkey")
+  ruangan     ruangan? @relation(fields: [ruanganId], references: [id], onDelete: SetNull, map: "Schedule_ruanganId_fkey")
+
+  @@index([subjectId], map: "Schedule_subjectId_fkey")
+  @@index([ruanganId], map: "Schedule_ruanganId_fkey")
+}
+
+model user {
+  id        String    @id
+  name      String
+  email     String?   @unique(map: "User_email_key")
+  nis       String?   @unique(map: "User_nis_key")
+  nip       String?   @unique(map: "User_nip_key")
+  password  String    @default("password123")
+  role      user_role
+  avatar    String?
+  kelas     String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime
+  agenda    agenda[]
+  subjects  subject[]
+}
+
+enum user_role {
+  admin
+  sekretaris
+  walikelas
+  pimpinan
+  siswa
+  guru
+}

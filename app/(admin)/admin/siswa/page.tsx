@@ -1,37 +1,87 @@
-'use client';
-import { useState } from 'react';
-import { Plus, Pencil, Trash2 } from 'lucide-react';
-import Card from '@/components/ui/Card';
-import Table from '@/components/ui/Table';
-import Button from '@/components/ui/Button';
-import Badge from '@/components/ui/Badge';
-import SearchFilter from '@/components/shared/SearchFilter';
-import { siswaList, Siswa } from '@/lib/mock-data';
+import prisma from '@/lib/prisma';
+import SiswaManagement from '@/components/shared/SiswaManagement';
 
-export default function SiswaPage() {
-  const [search, setSearch] = useState('');
-  const filtered = siswaList.filter(s => s.nama.toLowerCase().includes(search.toLowerCase()) || s.nis.includes(search) || s.kelas.toLowerCase().includes(search.toLowerCase()));
+type SiswaPageProps = {
+  searchParams: Promise<{
+    q?: string | string[];
+    page?: string | string[];
+  }>;
+};
+
+const pageSize = 25;
+
+function getSingleParam(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+export default async function SiswaPage({ searchParams }: SiswaPageProps) {
+  const params = await searchParams;
+  const query = (getSingleParam(params.q) ?? '').trim();
+  const currentPage = Math.max(Number(getSingleParam(params.page) ?? '1') || 1, 1);
+  const skip = (currentPage - 1) * pageSize;
+  const where = {
+    role: 'siswa' as const,
+    ...(query
+      ? {
+          OR: [
+            { name: { contains: query } },
+            { nis: { contains: query } },
+            { kelas: { contains: query } },
+            { email: { contains: query } },
+          ],
+        }
+      : {}),
+  };
+
+  const [siswa, totalSiswa, kelasData] = await Promise.all([
+    prisma.user.findMany({
+      where,
+      select: {
+        id: true,
+        nis: true,
+        name: true,
+        kelas: true,
+        email: true,
+      },
+      orderBy: { name: 'asc' },
+      skip,
+      take: pageSize,
+    }),
+    prisma.user.count({ where }),
+    prisma.kelas.findMany({
+      select: { 
+        nama: true,
+        tahunAjaran: true 
+      },
+      orderBy: [{ tingkat: 'asc' }, { nama: 'asc' }],
+    }),
+  ]);
+
+  // Create a map of kelas nama to tahunAjaran for quick lookup
+  const kelasTahunMap = new Map(kelasData.map(k => [k.nama, k.tahunAjaran]));
+
+  const siswaWithTahun = siswa.map(s => ({
+    ...s,
+    tahunAjaran: s.kelas ? kelasTahunMap.get(s.kelas) || '-' : '-'
+  }));
+
+  const kelasOptions = kelasData.map((item) => item.nama).sort();
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div><h1 className="text-2xl font-bold text-gray-800">Manajemen Siswa</h1><p className="text-sm text-gray-500 mt-1">Kelola data siswa</p></div>
-        <Button leftIcon={<Plus className="w-4 h-4" />}>Tambah Siswa</Button>
-      </div>
-      <SearchFilter searchValue={search} onSearchChange={setSearch} onExport={() => {}} />
-      <Card padding="sm">
-        <Table
-          columns={[
-            { key: 'nis', header: 'NIS' },
-            { key: 'nama', header: 'Nama', render: (s: Siswa) => <span className="font-medium">{s.nama}</span> },
-            { key: 'kelas', header: 'Kelas' },
-            { key: 'email', header: 'Email' },
-            { key: 'status', header: 'Status', render: (s: Siswa) => <Badge status={s.status} /> },
-            { key: 'actions', header: 'Aksi', render: () => <div className="flex gap-1.5"><button className="p-1.5 rounded-lg hover:bg-indigo-50 text-gray-400 hover:text-[#4F46E5]"><Pencil className="w-4 h-4" /></button><button className="p-1.5 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-500"><Trash2 className="w-4 h-4" /></button></div> },
-          ]}
-          data={filtered} keyField="id"
-        />
-      </Card>
-    </div>
+    <SiswaManagement
+      siswa={siswaWithTahun.map((item) => ({
+        id: item.id,
+        nis: item.nis ?? '',
+        name: item.name,
+        kelas: item.kelas,
+        email: item.email,
+        tahunAjaran: item.tahunAjaran,
+      }))}
+      kelasOptions={kelasOptions}
+      searchQuery={query}
+      currentPage={currentPage}
+      pageSize={pageSize}
+      totalSiswa={totalSiswa}
+    />
   );
 }

@@ -1,14 +1,20 @@
-import {
+export type {
+    User, Kelas, Guru, Siswa, MataPelajaran,
+    Jadwal, Agenda, Presensi, DashboardStats
+  } from './types';
+  
+  import {
     User, Kelas, Guru, Siswa, MataPelajaran,
     Jadwal, Agenda, Presensi, DashboardStats
   } from './types';
   
   export const users: User[] = [
-    { id: '1', name: 'Admin Sekolah', email: 'admin@sekolah.id', role: 'admin' },
-    { id: '2', name: 'Siti Aminah', email: 'sekretaris@sekolah.id', role: 'sekretaris' },
-    { id: '3', name: 'Budi Santoso', email: 'walikelas@sekolah.id', role: 'walikelas', kelas: 'XII IPA 1' },
-    { id: '4', name: 'Dr. H. Ahmad Riza', email: 'pimpinan@sekolah.id', role: 'pimpinan' },
-    { id: '5', name: 'Dina Permata', email: 'siswa@sekolah.id', role: 'siswa', kelas: 'XII IPA 1' },
+    { id: '1', name: 'Admin Sekolah', email: 'admin@sekolah.id', nip: '12345678', role: 'admin' },
+    { id: '2', name: 'Siti Aminah', email: 'sekretaris@sekolah.id', nip: '22334455', role: 'sekretaris' },
+    { id: '3', name: 'Budi Santoso', email: 'walikelas@sekolah.id', nip: '198501012010011001', role: 'walikelas', kelas: 'XII IPA 1' },
+    { id: '4', name: 'Dr. H. Ahmad Riza', email: 'pimpinan@sekolah.id', nip: '11223344', role: 'pimpinan' },
+    { id: '5', name: 'Dina Permata', email: 'siswa@sekolah.id', nis: '2024001', role: 'siswa', kelas: 'XII IPA 1' },
+    { id: '6', name: 'Dewi Lestari', email: 'guru@sekolah.id', nip: '198602022011012002', role: 'guru' },
   ];
   
   export const kelasList: Kelas[] = [
@@ -58,11 +64,30 @@ import {
   ];
   
   export const agendaList: Agenda[] = [
-    { id: '1', judul: 'Ulangan Harian Matematika', deskripsi: 'Materi: Integral dan Turunan. Membawa kalkulator scientific.', kelas: 'XII IPA 1', tanggal: '2026-05-10', kategori: 'Ujian', status: 'Terjadwal', createdBy: 'Budi Santoso', createdAt: '2026-05-01' },
-    { id: '2', judul: 'Praktikum Fisika', deskripsi: 'Praktikum gerak harmonik sederhana di LAB-FIS.', kelas: 'XII IPA 1', tanggal: '2026-05-12', kategori: 'Kegiatan', status: 'Terjadwal', createdBy: 'Dewi Lestari', createdAt: '2026-05-02' },
-    { id: '3', judul: 'Tugas Kelompok Ekonomi', deskripsi: 'Presentasi analisis pasar modal. Kelompok 1-4.', kelas: 'XII IPS 1', tanggal: '2026-05-11', kategori: 'Tugas', status: 'Terjadwal', createdBy: 'Rudi Hartono', createdAt: '2026-05-03' },
-    { id: '4', judul: 'Pembahasan Soal UN', deskripsi: 'Pembahasan soal-soal UN tahun sebelumnya.', kelas: 'XII IPA 1', tanggal: '2026-05-08', kategori: 'Pelajaran', status: 'Selesai', createdBy: 'Budi Santoso', createdAt: '2026-04-28' },
-    { id: '5', judul: 'Lomba Cerdas Cermat', deskripsi: 'Lomba antar kelas untuk memperingati Hari Pendidikan.', kelas: 'Semua Kelas XII', tanggal: '2026-05-15', kategori: 'Kegiatan', status: 'Terjadwal', createdBy: 'Admin Sekolah', createdAt: '2026-05-01' },
+    {
+      id: '1',
+      kelas: 'XII IPA 1',
+      tanggal: '2026-05-18',
+      items: [
+        { jamMulai: '06:30', jamSelesai: '07:15', kegiatan: 'Upacara Bendera', keterangan: 'Lapangan Utama' },
+        { jamMulai: '07:15', jamSelesai: '09:30', kegiatan: 'PAI', keterangan: 'Bpk. Ahmad' },
+        { jamMulai: '09:30', jamSelesai: '15:00', kegiatan: 'Web Development', keterangan: 'Lab Komputer' },
+      ],
+      createdBy: 'Siti Aminah',
+      createdAt: '2026-05-17'
+    },
+    {
+      id: '2',
+      kelas: 'XII IPA 1',
+      tanggal: '2026-05-19',
+      items: [
+        { jamMulai: '06:30', jamSelesai: '08:00', kegiatan: 'Literasi & Dhuha', keterangan: 'Masjid' },
+        { jamMulai: '08:00', jamSelesai: '12:00', kegiatan: 'Mobile Programming', keterangan: 'Lab Komputer' },
+        { jamMulai: '13:00', jamSelesai: '15:00', kegiatan: 'Bahasa Inggris', keterangan: 'R-301' },
+      ],
+      createdBy: 'Siti Aminah',
+      createdAt: '2026-05-18'
+    }
   ];
   
   export const presensiList: Presensi[] = [

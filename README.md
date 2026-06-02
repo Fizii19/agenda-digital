@@ -6,13 +6,14 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+
+### Setup Database on New Environment
+1. Make sure your MySQL/MariaDB server is running.
+2. Create the database: `CREATE DATABASE agenda_kelas_digital;`
+3. Copy `.env.example` to `.env` and update the `DATABASE_URL` with your local credentials.
+4. Install dependencies: `npm install`
+5. Run setup to migrate and seed the database: `npm run db:setup`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
