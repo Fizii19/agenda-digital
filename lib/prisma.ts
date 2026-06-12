@@ -22,7 +22,7 @@ function hasCurrentDelegates(client: ReturnType<typeof prismaClientSingleton> | 
   if (!client) return false;
 
   const delegates = client as unknown as Record<string, unknown>;
-  return Boolean(delegates.kelas && delegates.user && delegates.tahunajaran && delegates.ruangan && delegates.subject && delegates.schedule);
+  return Boolean(delegates.kelas && delegates.user && delegates.userrole && delegates.tahunajaran && delegates.ruangan && delegates.subject && delegates.schedule && delegates.siswakelasriwayat && delegates.presensigurumapel);
 }
 
 if (!hasCurrentDelegates(globalThis.prisma)) {

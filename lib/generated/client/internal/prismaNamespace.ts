@@ -391,7 +391,10 @@ export const ModelName = {
   subject: 'subject',
   ruangan: 'ruangan',
   schedule: 'schedule',
-  user: 'user'
+  user: 'user',
+  userrole: 'userrole',
+  siswakelasriwayat: 'siswakelasriwayat',
+  presensigurumapel: 'presensigurumapel'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "agenda" | "agendaitem" | "kelas" | "tahunajaran" | "subject" | "ruangan" | "schedule" | "user"
+    modelProps: "agenda" | "agendaitem" | "kelas" | "tahunajaran" | "subject" | "ruangan" | "schedule" | "user" | "userrole" | "siswakelasriwayat" | "presensigurumapel"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -939,6 +942,204 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    userrole: {
+      payload: Prisma.$userrolePayload<ExtArgs>
+      fields: Prisma.userroleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.userroleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.userroleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload>
+        }
+        findFirst: {
+          args: Prisma.userroleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.userroleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload>
+        }
+        findMany: {
+          args: Prisma.userroleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload>[]
+        }
+        create: {
+          args: Prisma.userroleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload>
+        }
+        createMany: {
+          args: Prisma.userroleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.userroleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload>
+        }
+        update: {
+          args: Prisma.userroleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload>
+        }
+        deleteMany: {
+          args: Prisma.userroleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.userroleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.userroleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$userrolePayload>
+        }
+        aggregate: {
+          args: Prisma.UserroleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserrole>
+        }
+        groupBy: {
+          args: Prisma.userroleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserroleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.userroleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserroleCountAggregateOutputType> | number
+        }
+      }
+    }
+    siswakelasriwayat: {
+      payload: Prisma.$siswakelasriwayatPayload<ExtArgs>
+      fields: Prisma.siswakelasriwayatFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.siswakelasriwayatFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.siswakelasriwayatFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload>
+        }
+        findFirst: {
+          args: Prisma.siswakelasriwayatFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.siswakelasriwayatFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload>
+        }
+        findMany: {
+          args: Prisma.siswakelasriwayatFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload>[]
+        }
+        create: {
+          args: Prisma.siswakelasriwayatCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload>
+        }
+        createMany: {
+          args: Prisma.siswakelasriwayatCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.siswakelasriwayatDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload>
+        }
+        update: {
+          args: Prisma.siswakelasriwayatUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload>
+        }
+        deleteMany: {
+          args: Prisma.siswakelasriwayatDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.siswakelasriwayatUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.siswakelasriwayatUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$siswakelasriwayatPayload>
+        }
+        aggregate: {
+          args: Prisma.SiswakelasriwayatAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSiswakelasriwayat>
+        }
+        groupBy: {
+          args: Prisma.siswakelasriwayatGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SiswakelasriwayatGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.siswakelasriwayatCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SiswakelasriwayatCountAggregateOutputType> | number
+        }
+      }
+    }
+    presensigurumapel: {
+      payload: Prisma.$presensigurumapelPayload<ExtArgs>
+      fields: Prisma.presensigurumapelFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.presensigurumapelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.presensigurumapelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload>
+        }
+        findFirst: {
+          args: Prisma.presensigurumapelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.presensigurumapelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload>
+        }
+        findMany: {
+          args: Prisma.presensigurumapelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload>[]
+        }
+        create: {
+          args: Prisma.presensigurumapelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload>
+        }
+        createMany: {
+          args: Prisma.presensigurumapelCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.presensigurumapelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload>
+        }
+        update: {
+          args: Prisma.presensigurumapelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload>
+        }
+        deleteMany: {
+          args: Prisma.presensigurumapelDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.presensigurumapelUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.presensigurumapelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$presensigurumapelPayload>
+        }
+        aggregate: {
+          args: Prisma.PresensigurumapelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePresensigurumapel>
+        }
+        groupBy: {
+          args: Prisma.presensigurumapelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PresensigurumapelGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.presensigurumapelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PresensigurumapelCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1076,15 +1277,64 @@ export const UserScalarFieldEnum = {
   email: 'email',
   nis: 'nis',
   nip: 'nip',
+  status: 'status',
   password: 'password',
   role: 'role',
   avatar: 'avatar',
   kelas: 'kelas',
+  kelasId: 'kelasId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserroleScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  role: 'role',
+  assignedBy: 'assignedBy',
+  createdAt: 'createdAt'
+} as const
+
+export type UserroleScalarFieldEnum = (typeof UserroleScalarFieldEnum)[keyof typeof UserroleScalarFieldEnum]
+
+
+export const SiswakelasriwayatScalarFieldEnum = {
+  id: 'id',
+  siswaId: 'siswaId',
+  kelasId: 'kelasId',
+  kelasNama: 'kelasNama',
+  tingkat: 'tingkat',
+  jurusan: 'jurusan',
+  waliKelas: 'waliKelas',
+  tahunAjaran: 'tahunAjaran',
+  tahunAjaranId: 'tahunAjaranId',
+  status: 'status',
+  tanggalMasuk: 'tanggalMasuk',
+  tanggalKeluar: 'tanggalKeluar',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiswakelasriwayatScalarFieldEnum = (typeof SiswakelasriwayatScalarFieldEnum)[keyof typeof SiswakelasriwayatScalarFieldEnum]
+
+
+export const PresensigurumapelScalarFieldEnum = {
+  id: 'id',
+  tanggal: 'tanggal',
+  kelasId: 'kelasId',
+  scheduleId: 'scheduleId',
+  guruId: 'guruId',
+  status: 'status',
+  keterangan: 'keterangan',
+  inputBy: 'inputBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PresensigurumapelScalarFieldEnum = (typeof PresensigurumapelScalarFieldEnum)[keyof typeof PresensigurumapelScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1183,12 +1433,52 @@ export const userOrderByRelevanceFieldEnum = {
   email: 'email',
   nis: 'nis',
   nip: 'nip',
+  status: 'status',
   password: 'password',
   avatar: 'avatar',
-  kelas: 'kelas'
+  kelas: 'kelas',
+  kelasId: 'kelasId'
 } as const
 
 export type userOrderByRelevanceFieldEnum = (typeof userOrderByRelevanceFieldEnum)[keyof typeof userOrderByRelevanceFieldEnum]
+
+
+export const userroleOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  assignedBy: 'assignedBy'
+} as const
+
+export type userroleOrderByRelevanceFieldEnum = (typeof userroleOrderByRelevanceFieldEnum)[keyof typeof userroleOrderByRelevanceFieldEnum]
+
+
+export const siswakelasriwayatOrderByRelevanceFieldEnum = {
+  id: 'id',
+  siswaId: 'siswaId',
+  kelasId: 'kelasId',
+  kelasNama: 'kelasNama',
+  jurusan: 'jurusan',
+  waliKelas: 'waliKelas',
+  tahunAjaran: 'tahunAjaran',
+  tahunAjaranId: 'tahunAjaranId',
+  status: 'status'
+} as const
+
+export type siswakelasriwayatOrderByRelevanceFieldEnum = (typeof siswakelasriwayatOrderByRelevanceFieldEnum)[keyof typeof siswakelasriwayatOrderByRelevanceFieldEnum]
+
+
+export const presensigurumapelOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tanggal: 'tanggal',
+  kelasId: 'kelasId',
+  scheduleId: 'scheduleId',
+  guruId: 'guruId',
+  status: 'status',
+  keterangan: 'keterangan',
+  inputBy: 'inputBy'
+} as const
+
+export type presensigurumapelOrderByRelevanceFieldEnum = (typeof presensigurumapelOrderByRelevanceFieldEnum)[keyof typeof presensigurumapelOrderByRelevanceFieldEnum]
 
 
 
@@ -1356,6 +1646,9 @@ export type GlobalOmitConfig = {
   ruangan?: Prisma.ruanganOmit
   schedule?: Prisma.scheduleOmit
   user?: Prisma.userOmit
+  userrole?: Prisma.userroleOmit
+  siswakelasriwayat?: Prisma.siswakelasriwayatOmit
+  presensigurumapel?: Prisma.presensigurumapelOmit
 }
 
 /* Types for Logging */

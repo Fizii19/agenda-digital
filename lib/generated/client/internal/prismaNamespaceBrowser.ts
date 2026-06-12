@@ -58,7 +58,10 @@ export const ModelName = {
   subject: 'subject',
   ruangan: 'ruangan',
   schedule: 'schedule',
-  user: 'user'
+  user: 'user',
+  userrole: 'userrole',
+  siswakelasriwayat: 'siswakelasriwayat',
+  presensigurumapel: 'presensigurumapel'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -175,15 +178,64 @@ export const UserScalarFieldEnum = {
   email: 'email',
   nis: 'nis',
   nip: 'nip',
+  status: 'status',
   password: 'password',
   role: 'role',
   avatar: 'avatar',
   kelas: 'kelas',
+  kelasId: 'kelasId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const UserroleScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  role: 'role',
+  assignedBy: 'assignedBy',
+  createdAt: 'createdAt'
+} as const
+
+export type UserroleScalarFieldEnum = (typeof UserroleScalarFieldEnum)[keyof typeof UserroleScalarFieldEnum]
+
+
+export const SiswakelasriwayatScalarFieldEnum = {
+  id: 'id',
+  siswaId: 'siswaId',
+  kelasId: 'kelasId',
+  kelasNama: 'kelasNama',
+  tingkat: 'tingkat',
+  jurusan: 'jurusan',
+  waliKelas: 'waliKelas',
+  tahunAjaran: 'tahunAjaran',
+  tahunAjaranId: 'tahunAjaranId',
+  status: 'status',
+  tanggalMasuk: 'tanggalMasuk',
+  tanggalKeluar: 'tanggalKeluar',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SiswakelasriwayatScalarFieldEnum = (typeof SiswakelasriwayatScalarFieldEnum)[keyof typeof SiswakelasriwayatScalarFieldEnum]
+
+
+export const PresensigurumapelScalarFieldEnum = {
+  id: 'id',
+  tanggal: 'tanggal',
+  kelasId: 'kelasId',
+  scheduleId: 'scheduleId',
+  guruId: 'guruId',
+  status: 'status',
+  keterangan: 'keterangan',
+  inputBy: 'inputBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PresensigurumapelScalarFieldEnum = (typeof PresensigurumapelScalarFieldEnum)[keyof typeof PresensigurumapelScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -282,10 +334,50 @@ export const userOrderByRelevanceFieldEnum = {
   email: 'email',
   nis: 'nis',
   nip: 'nip',
+  status: 'status',
   password: 'password',
   avatar: 'avatar',
-  kelas: 'kelas'
+  kelas: 'kelas',
+  kelasId: 'kelasId'
 } as const
 
 export type userOrderByRelevanceFieldEnum = (typeof userOrderByRelevanceFieldEnum)[keyof typeof userOrderByRelevanceFieldEnum]
+
+
+export const userroleOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  assignedBy: 'assignedBy'
+} as const
+
+export type userroleOrderByRelevanceFieldEnum = (typeof userroleOrderByRelevanceFieldEnum)[keyof typeof userroleOrderByRelevanceFieldEnum]
+
+
+export const siswakelasriwayatOrderByRelevanceFieldEnum = {
+  id: 'id',
+  siswaId: 'siswaId',
+  kelasId: 'kelasId',
+  kelasNama: 'kelasNama',
+  jurusan: 'jurusan',
+  waliKelas: 'waliKelas',
+  tahunAjaran: 'tahunAjaran',
+  tahunAjaranId: 'tahunAjaranId',
+  status: 'status'
+} as const
+
+export type siswakelasriwayatOrderByRelevanceFieldEnum = (typeof siswakelasriwayatOrderByRelevanceFieldEnum)[keyof typeof siswakelasriwayatOrderByRelevanceFieldEnum]
+
+
+export const presensigurumapelOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tanggal: 'tanggal',
+  kelasId: 'kelasId',
+  scheduleId: 'scheduleId',
+  guruId: 'guruId',
+  status: 'status',
+  keterangan: 'keterangan',
+  inputBy: 'inputBy'
+} as const
+
+export type presensigurumapelOrderByRelevanceFieldEnum = (typeof presensigurumapelOrderByRelevanceFieldEnum)[keyof typeof presensigurumapelOrderByRelevanceFieldEnum]
 

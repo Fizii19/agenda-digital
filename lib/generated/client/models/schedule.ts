@@ -208,6 +208,7 @@ export type scheduleWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"schedule"> | Date | string
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.subjectWhereInput>
   ruangan?: Prisma.XOR<Prisma.RuanganNullableScalarRelationFilter, Prisma.ruanganWhereInput> | null
+  presensiGuruMapel?: Prisma.PresensigurumapelListRelationFilter
 }
 
 export type scheduleOrderByWithRelationInput = {
@@ -221,6 +222,7 @@ export type scheduleOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   subject?: Prisma.subjectOrderByWithRelationInput
   ruangan?: Prisma.ruanganOrderByWithRelationInput
+  presensiGuruMapel?: Prisma.presensigurumapelOrderByRelationAggregateInput
   _relevance?: Prisma.scheduleOrderByRelevanceInput
 }
 
@@ -238,6 +240,7 @@ export type scheduleWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"schedule"> | Date | string
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.subjectWhereInput>
   ruangan?: Prisma.XOR<Prisma.RuanganNullableScalarRelationFilter, Prisma.ruanganWhereInput> | null
+  presensiGuruMapel?: Prisma.PresensigurumapelListRelationFilter
 }, "id">
 
 export type scheduleOrderByWithAggregationInput = {
@@ -277,6 +280,7 @@ export type scheduleCreateInput = {
   updatedAt?: Date | string
   subject: Prisma.subjectCreateNestedOneWithoutSchedulesInput
   ruangan?: Prisma.ruanganCreateNestedOneWithoutSchedulesInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutScheduleInput
 }
 
 export type scheduleUncheckedCreateInput = {
@@ -288,6 +292,7 @@ export type scheduleUncheckedCreateInput = {
   ruanganId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutScheduleInput
 }
 
 export type scheduleUpdateInput = {
@@ -299,6 +304,7 @@ export type scheduleUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subject?: Prisma.subjectUpdateOneRequiredWithoutSchedulesNestedInput
   ruangan?: Prisma.ruanganUpdateOneWithoutSchedulesNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutScheduleNestedInput
 }
 
 export type scheduleUncheckedUpdateInput = {
@@ -310,6 +316,7 @@ export type scheduleUncheckedUpdateInput = {
   ruanganId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutScheduleNestedInput
 }
 
 export type scheduleCreateManyInput = {
@@ -390,6 +397,11 @@ export type scheduleMinOrderByAggregateInput = {
   ruanganId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type ScheduleScalarRelationFilter = {
+  is?: Prisma.scheduleWhereInput
+  isNot?: Prisma.scheduleWhereInput
 }
 
 export type scheduleCreateNestedManyWithoutSubjectInput = {
@@ -476,6 +488,20 @@ export type scheduleUncheckedUpdateManyWithoutRuanganNestedInput = {
   deleteMany?: Prisma.scheduleScalarWhereInput | Prisma.scheduleScalarWhereInput[]
 }
 
+export type scheduleCreateNestedOneWithoutPresensiGuruMapelInput = {
+  create?: Prisma.XOR<Prisma.scheduleCreateWithoutPresensiGuruMapelInput, Prisma.scheduleUncheckedCreateWithoutPresensiGuruMapelInput>
+  connectOrCreate?: Prisma.scheduleCreateOrConnectWithoutPresensiGuruMapelInput
+  connect?: Prisma.scheduleWhereUniqueInput
+}
+
+export type scheduleUpdateOneRequiredWithoutPresensiGuruMapelNestedInput = {
+  create?: Prisma.XOR<Prisma.scheduleCreateWithoutPresensiGuruMapelInput, Prisma.scheduleUncheckedCreateWithoutPresensiGuruMapelInput>
+  connectOrCreate?: Prisma.scheduleCreateOrConnectWithoutPresensiGuruMapelInput
+  upsert?: Prisma.scheduleUpsertWithoutPresensiGuruMapelInput
+  connect?: Prisma.scheduleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.scheduleUpdateToOneWithWhereWithoutPresensiGuruMapelInput, Prisma.scheduleUpdateWithoutPresensiGuruMapelInput>, Prisma.scheduleUncheckedUpdateWithoutPresensiGuruMapelInput>
+}
+
 export type scheduleCreateWithoutSubjectInput = {
   id: string
   hari: string
@@ -484,6 +510,7 @@ export type scheduleCreateWithoutSubjectInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   ruangan?: Prisma.ruanganCreateNestedOneWithoutSchedulesInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutScheduleInput
 }
 
 export type scheduleUncheckedCreateWithoutSubjectInput = {
@@ -494,6 +521,7 @@ export type scheduleUncheckedCreateWithoutSubjectInput = {
   ruanganId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutScheduleInput
 }
 
 export type scheduleCreateOrConnectWithoutSubjectInput = {
@@ -544,6 +572,7 @@ export type scheduleCreateWithoutRuanganInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   subject: Prisma.subjectCreateNestedOneWithoutSchedulesInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutScheduleInput
 }
 
 export type scheduleUncheckedCreateWithoutRuanganInput = {
@@ -554,6 +583,7 @@ export type scheduleUncheckedCreateWithoutRuanganInput = {
   subjectId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutScheduleInput
 }
 
 export type scheduleCreateOrConnectWithoutRuanganInput = {
@@ -582,6 +612,66 @@ export type scheduleUpdateManyWithWhereWithoutRuanganInput = {
   data: Prisma.XOR<Prisma.scheduleUpdateManyMutationInput, Prisma.scheduleUncheckedUpdateManyWithoutRuanganInput>
 }
 
+export type scheduleCreateWithoutPresensiGuruMapelInput = {
+  id: string
+  hari: string
+  jamMulai: string
+  jamSelesai: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  subject: Prisma.subjectCreateNestedOneWithoutSchedulesInput
+  ruangan?: Prisma.ruanganCreateNestedOneWithoutSchedulesInput
+}
+
+export type scheduleUncheckedCreateWithoutPresensiGuruMapelInput = {
+  id: string
+  hari: string
+  jamMulai: string
+  jamSelesai: string
+  subjectId: string
+  ruanganId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type scheduleCreateOrConnectWithoutPresensiGuruMapelInput = {
+  where: Prisma.scheduleWhereUniqueInput
+  create: Prisma.XOR<Prisma.scheduleCreateWithoutPresensiGuruMapelInput, Prisma.scheduleUncheckedCreateWithoutPresensiGuruMapelInput>
+}
+
+export type scheduleUpsertWithoutPresensiGuruMapelInput = {
+  update: Prisma.XOR<Prisma.scheduleUpdateWithoutPresensiGuruMapelInput, Prisma.scheduleUncheckedUpdateWithoutPresensiGuruMapelInput>
+  create: Prisma.XOR<Prisma.scheduleCreateWithoutPresensiGuruMapelInput, Prisma.scheduleUncheckedCreateWithoutPresensiGuruMapelInput>
+  where?: Prisma.scheduleWhereInput
+}
+
+export type scheduleUpdateToOneWithWhereWithoutPresensiGuruMapelInput = {
+  where?: Prisma.scheduleWhereInput
+  data: Prisma.XOR<Prisma.scheduleUpdateWithoutPresensiGuruMapelInput, Prisma.scheduleUncheckedUpdateWithoutPresensiGuruMapelInput>
+}
+
+export type scheduleUpdateWithoutPresensiGuruMapelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  hari?: Prisma.StringFieldUpdateOperationsInput | string
+  jamMulai?: Prisma.StringFieldUpdateOperationsInput | string
+  jamSelesai?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subject?: Prisma.subjectUpdateOneRequiredWithoutSchedulesNestedInput
+  ruangan?: Prisma.ruanganUpdateOneWithoutSchedulesNestedInput
+}
+
+export type scheduleUncheckedUpdateWithoutPresensiGuruMapelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  hari?: Prisma.StringFieldUpdateOperationsInput | string
+  jamMulai?: Prisma.StringFieldUpdateOperationsInput | string
+  jamSelesai?: Prisma.StringFieldUpdateOperationsInput | string
+  subjectId?: Prisma.StringFieldUpdateOperationsInput | string
+  ruanganId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type scheduleCreateManySubjectInput = {
   id: string
   hari: string
@@ -600,6 +690,7 @@ export type scheduleUpdateWithoutSubjectInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   ruangan?: Prisma.ruanganUpdateOneWithoutSchedulesNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutScheduleNestedInput
 }
 
 export type scheduleUncheckedUpdateWithoutSubjectInput = {
@@ -610,6 +701,7 @@ export type scheduleUncheckedUpdateWithoutSubjectInput = {
   ruanganId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutScheduleNestedInput
 }
 
 export type scheduleUncheckedUpdateManyWithoutSubjectInput = {
@@ -640,6 +732,7 @@ export type scheduleUpdateWithoutRuanganInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subject?: Prisma.subjectUpdateOneRequiredWithoutSchedulesNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutScheduleNestedInput
 }
 
 export type scheduleUncheckedUpdateWithoutRuanganInput = {
@@ -650,6 +743,7 @@ export type scheduleUncheckedUpdateWithoutRuanganInput = {
   subjectId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutScheduleNestedInput
 }
 
 export type scheduleUncheckedUpdateManyWithoutRuanganInput = {
@@ -663,6 +757,35 @@ export type scheduleUncheckedUpdateManyWithoutRuanganInput = {
 }
 
 
+/**
+ * Count Type ScheduleCountOutputType
+ */
+
+export type ScheduleCountOutputType = {
+  presensiGuruMapel: number
+}
+
+export type ScheduleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  presensiGuruMapel?: boolean | ScheduleCountOutputTypeCountPresensiGuruMapelArgs
+}
+
+/**
+ * ScheduleCountOutputType without action
+ */
+export type ScheduleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScheduleCountOutputType
+   */
+  select?: Prisma.ScheduleCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ScheduleCountOutputType without action
+ */
+export type ScheduleCountOutputTypeCountPresensiGuruMapelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.presensigurumapelWhereInput
+}
+
 
 export type scheduleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -675,6 +798,8 @@ export type scheduleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updatedAt?: boolean
   subject?: boolean | Prisma.subjectDefaultArgs<ExtArgs>
   ruangan?: boolean | Prisma.schedule$ruanganArgs<ExtArgs>
+  presensiGuruMapel?: boolean | Prisma.schedule$presensiGuruMapelArgs<ExtArgs>
+  _count?: boolean | Prisma.ScheduleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["schedule"]>
 
 
@@ -694,6 +819,8 @@ export type scheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type scheduleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subject?: boolean | Prisma.subjectDefaultArgs<ExtArgs>
   ruangan?: boolean | Prisma.schedule$ruanganArgs<ExtArgs>
+  presensiGuruMapel?: boolean | Prisma.schedule$presensiGuruMapelArgs<ExtArgs>
+  _count?: boolean | Prisma.ScheduleCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $schedulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -701,6 +828,7 @@ export type $schedulePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     subject: Prisma.$subjectPayload<ExtArgs>
     ruangan: Prisma.$ruanganPayload<ExtArgs> | null
+    presensiGuruMapel: Prisma.$presensigurumapelPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1053,6 +1181,7 @@ export interface Prisma__scheduleClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   subject<T extends Prisma.subjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjectDefaultArgs<ExtArgs>>): Prisma.Prisma__subjectClient<runtime.Types.Result.GetResult<Prisma.$subjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   ruangan<T extends Prisma.schedule$ruanganArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.schedule$ruanganArgs<ExtArgs>>): Prisma.Prisma__ruanganClient<runtime.Types.Result.GetResult<Prisma.$ruanganPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  presensiGuruMapel<T extends Prisma.schedule$presensiGuruMapelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.schedule$presensiGuruMapelArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$presensigurumapelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1454,6 +1583,30 @@ export type schedule$ruanganArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.ruanganInclude<ExtArgs> | null
   where?: Prisma.ruanganWhereInput
+}
+
+/**
+ * schedule.presensiGuruMapel
+ */
+export type schedule$presensiGuruMapelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the presensigurumapel
+   */
+  select?: Prisma.presensigurumapelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the presensigurumapel
+   */
+  omit?: Prisma.presensigurumapelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.presensigurumapelInclude<ExtArgs> | null
+  where?: Prisma.presensigurumapelWhereInput
+  orderBy?: Prisma.presensigurumapelOrderByWithRelationInput | Prisma.presensigurumapelOrderByWithRelationInput[]
+  cursor?: Prisma.presensigurumapelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PresensigurumapelScalarFieldEnum | Prisma.PresensigurumapelScalarFieldEnum[]
 }
 
 /**

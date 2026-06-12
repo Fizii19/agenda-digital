@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Role } from '@/lib/types';
+import { roleLabels } from '@/lib/roles';
 import {
   LayoutDashboard, Users, GraduationCap, BookOpen, Calendar, Monitor, ClipboardList,
   UserCheck, FileText, Printer, BarChart3, Eye, Clock, CheckSquare, School, X, DoorOpen,
+  ArrowUpCircle,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -26,13 +28,16 @@ const menuItems: MenuItem[] = [
   { icon: School, label: 'Manajemen Kelas', href: '/kelas', roles: ['admin'] },
   { icon: Users, label: 'Manajemen Guru', href: '/guru', roles: ['admin'] },
   { icon: GraduationCap, label: 'Manajemen Siswa', href: '/siswa', roles: ['admin'] },
+  { icon: ArrowUpCircle, label: 'Naik Kelas', href: '/kenaikan', roles: ['admin'] },
   { icon: DoorOpen, label: 'Manajemen Ruangan', href: '/ruangan', roles: ['admin'] },
   { icon: BookOpen, label: 'Mata Pelajaran', href: '/mapel', roles: ['admin'] },
   { icon: Calendar, label: 'Jadwal Pelajaran', href: '/jadwal', roles: ['admin'] },
   { icon: Monitor, label: 'Monitoring Kelas', href: '/monitoring', roles: ['pimpinan'] },
+  { icon: UserCheck, label: 'Presensi Guru', href: '/presensi-guru', roles: ['pimpinan'] },
   { icon: ClipboardList, label: 'Input Agenda', href: '/agenda', roles: ['sekretaris', 'guru'] },
   { icon: UserCheck, label: 'Presensi Siswa', href: '/presensi', roles: ['sekretaris', 'guru'] },
   { icon: Printer, label: 'Cetak Laporan', href: '/laporan', roles: ['sekretaris'] },
+  { icon: Users, label: 'Manajemen Siswa', href: '/siswa', roles: ['walikelas'] },
   { icon: FileText, label: 'Laporan Presensi', href: '/laporan', roles: ['walikelas'] },
   { icon: Eye, label: 'Monitoring Jurnal', href: '/monitoring', roles: ['walikelas'] },
   { icon: BarChart3, label: 'Statistik', href: '/statistik', roles: ['pimpinan'] },
@@ -76,7 +81,7 @@ export default function Sidebar({ role, isOpen, onClose }: SidebarProps) {
         <div className="p-4 border-t border-gray-50">
           <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-gray-50">
             <div className="w-8 h-8 bg-[#4F46E5] rounded-full flex items-center justify-center text-white text-xs font-bold">{role[0].toUpperCase()}</div>
-            <div><p className="text-sm font-medium text-gray-700 capitalize">{role}</p><p className="text-xs text-gray-400">Online</p></div>
+            <div><p className="text-sm font-medium text-gray-700">{roleLabels[role]}</p><p className="text-xs text-gray-400">Online</p></div>
           </div>
         </div>
       </aside>

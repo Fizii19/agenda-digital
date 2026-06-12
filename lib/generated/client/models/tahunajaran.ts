@@ -183,6 +183,7 @@ export type tahunajaranWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"tahunajaran"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"tahunajaran"> | Date | string
   kelas?: Prisma.KelasListRelationFilter
+  riwayatSiswa?: Prisma.SiswakelasriwayatListRelationFilter
 }
 
 export type tahunajaranOrderByWithRelationInput = {
@@ -192,6 +193,7 @@ export type tahunajaranOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   kelas?: Prisma.kelasOrderByRelationAggregateInput
+  riwayatSiswa?: Prisma.siswakelasriwayatOrderByRelationAggregateInput
   _relevance?: Prisma.tahunajaranOrderByRelevanceInput
 }
 
@@ -205,6 +207,7 @@ export type tahunajaranWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"tahunajaran"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"tahunajaran"> | Date | string
   kelas?: Prisma.KelasListRelationFilter
+  riwayatSiswa?: Prisma.SiswakelasriwayatListRelationFilter
 }, "id" | "nama">
 
 export type tahunajaranOrderByWithAggregationInput = {
@@ -236,6 +239,7 @@ export type tahunajaranCreateInput = {
   createdAt?: Date | string
   updatedAt: Date | string
   kelas?: Prisma.kelasCreateNestedManyWithoutTahunajaranInput
+  riwayatSiswa?: Prisma.siswakelasriwayatCreateNestedManyWithoutTahunajaranInput
 }
 
 export type tahunajaranUncheckedCreateInput = {
@@ -245,6 +249,7 @@ export type tahunajaranUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt: Date | string
   kelas?: Prisma.kelasUncheckedCreateNestedManyWithoutTahunajaranInput
+  riwayatSiswa?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutTahunajaranInput
 }
 
 export type tahunajaranUpdateInput = {
@@ -254,6 +259,7 @@ export type tahunajaranUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kelas?: Prisma.kelasUpdateManyWithoutTahunajaranNestedInput
+  riwayatSiswa?: Prisma.siswakelasriwayatUpdateManyWithoutTahunajaranNestedInput
 }
 
 export type tahunajaranUncheckedUpdateInput = {
@@ -263,6 +269,7 @@ export type tahunajaranUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   kelas?: Prisma.kelasUncheckedUpdateManyWithoutTahunajaranNestedInput
+  riwayatSiswa?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutTahunajaranNestedInput
 }
 
 export type tahunajaranCreateManyInput = {
@@ -344,12 +351,29 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type tahunajaranCreateNestedOneWithoutRiwayatSiswaInput = {
+  create?: Prisma.XOR<Prisma.tahunajaranCreateWithoutRiwayatSiswaInput, Prisma.tahunajaranUncheckedCreateWithoutRiwayatSiswaInput>
+  connectOrCreate?: Prisma.tahunajaranCreateOrConnectWithoutRiwayatSiswaInput
+  connect?: Prisma.tahunajaranWhereUniqueInput
+}
+
+export type tahunajaranUpdateOneWithoutRiwayatSiswaNestedInput = {
+  create?: Prisma.XOR<Prisma.tahunajaranCreateWithoutRiwayatSiswaInput, Prisma.tahunajaranUncheckedCreateWithoutRiwayatSiswaInput>
+  connectOrCreate?: Prisma.tahunajaranCreateOrConnectWithoutRiwayatSiswaInput
+  upsert?: Prisma.tahunajaranUpsertWithoutRiwayatSiswaInput
+  disconnect?: Prisma.tahunajaranWhereInput | boolean
+  delete?: Prisma.tahunajaranWhereInput | boolean
+  connect?: Prisma.tahunajaranWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.tahunajaranUpdateToOneWithWhereWithoutRiwayatSiswaInput, Prisma.tahunajaranUpdateWithoutRiwayatSiswaInput>, Prisma.tahunajaranUncheckedUpdateWithoutRiwayatSiswaInput>
+}
+
 export type tahunajaranCreateWithoutKelasInput = {
   id: string
   nama: string
   aktif?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
+  riwayatSiswa?: Prisma.siswakelasriwayatCreateNestedManyWithoutTahunajaranInput
 }
 
 export type tahunajaranUncheckedCreateWithoutKelasInput = {
@@ -358,6 +382,7 @@ export type tahunajaranUncheckedCreateWithoutKelasInput = {
   aktif?: boolean
   createdAt?: Date | string
   updatedAt: Date | string
+  riwayatSiswa?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutTahunajaranInput
 }
 
 export type tahunajaranCreateOrConnectWithoutKelasInput = {
@@ -382,6 +407,7 @@ export type tahunajaranUpdateWithoutKelasInput = {
   aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  riwayatSiswa?: Prisma.siswakelasriwayatUpdateManyWithoutTahunajaranNestedInput
 }
 
 export type tahunajaranUncheckedUpdateWithoutKelasInput = {
@@ -390,6 +416,59 @@ export type tahunajaranUncheckedUpdateWithoutKelasInput = {
   aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  riwayatSiswa?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutTahunajaranNestedInput
+}
+
+export type tahunajaranCreateWithoutRiwayatSiswaInput = {
+  id: string
+  nama: string
+  aktif?: boolean
+  createdAt?: Date | string
+  updatedAt: Date | string
+  kelas?: Prisma.kelasCreateNestedManyWithoutTahunajaranInput
+}
+
+export type tahunajaranUncheckedCreateWithoutRiwayatSiswaInput = {
+  id: string
+  nama: string
+  aktif?: boolean
+  createdAt?: Date | string
+  updatedAt: Date | string
+  kelas?: Prisma.kelasUncheckedCreateNestedManyWithoutTahunajaranInput
+}
+
+export type tahunajaranCreateOrConnectWithoutRiwayatSiswaInput = {
+  where: Prisma.tahunajaranWhereUniqueInput
+  create: Prisma.XOR<Prisma.tahunajaranCreateWithoutRiwayatSiswaInput, Prisma.tahunajaranUncheckedCreateWithoutRiwayatSiswaInput>
+}
+
+export type tahunajaranUpsertWithoutRiwayatSiswaInput = {
+  update: Prisma.XOR<Prisma.tahunajaranUpdateWithoutRiwayatSiswaInput, Prisma.tahunajaranUncheckedUpdateWithoutRiwayatSiswaInput>
+  create: Prisma.XOR<Prisma.tahunajaranCreateWithoutRiwayatSiswaInput, Prisma.tahunajaranUncheckedCreateWithoutRiwayatSiswaInput>
+  where?: Prisma.tahunajaranWhereInput
+}
+
+export type tahunajaranUpdateToOneWithWhereWithoutRiwayatSiswaInput = {
+  where?: Prisma.tahunajaranWhereInput
+  data: Prisma.XOR<Prisma.tahunajaranUpdateWithoutRiwayatSiswaInput, Prisma.tahunajaranUncheckedUpdateWithoutRiwayatSiswaInput>
+}
+
+export type tahunajaranUpdateWithoutRiwayatSiswaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nama?: Prisma.StringFieldUpdateOperationsInput | string
+  aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kelas?: Prisma.kelasUpdateManyWithoutTahunajaranNestedInput
+}
+
+export type tahunajaranUncheckedUpdateWithoutRiwayatSiswaInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nama?: Prisma.StringFieldUpdateOperationsInput | string
+  aktif?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  kelas?: Prisma.kelasUncheckedUpdateManyWithoutTahunajaranNestedInput
 }
 
 
@@ -399,10 +478,12 @@ export type tahunajaranUncheckedUpdateWithoutKelasInput = {
 
 export type TahunajaranCountOutputType = {
   kelas: number
+  riwayatSiswa: number
 }
 
 export type TahunajaranCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kelas?: boolean | TahunajaranCountOutputTypeCountKelasArgs
+  riwayatSiswa?: boolean | TahunajaranCountOutputTypeCountRiwayatSiswaArgs
 }
 
 /**
@@ -422,6 +503,13 @@ export type TahunajaranCountOutputTypeCountKelasArgs<ExtArgs extends runtime.Typ
   where?: Prisma.kelasWhereInput
 }
 
+/**
+ * TahunajaranCountOutputType without action
+ */
+export type TahunajaranCountOutputTypeCountRiwayatSiswaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.siswakelasriwayatWhereInput
+}
+
 
 export type tahunajaranSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -430,6 +518,7 @@ export type tahunajaranSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   createdAt?: boolean
   updatedAt?: boolean
   kelas?: boolean | Prisma.tahunajaran$kelasArgs<ExtArgs>
+  riwayatSiswa?: boolean | Prisma.tahunajaran$riwayatSiswaArgs<ExtArgs>
   _count?: boolean | Prisma.TahunajaranCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tahunajaran"]>
 
@@ -446,6 +535,7 @@ export type tahunajaranSelectScalar = {
 export type tahunajaranOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nama" | "aktif" | "createdAt" | "updatedAt", ExtArgs["result"]["tahunajaran"]>
 export type tahunajaranInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   kelas?: boolean | Prisma.tahunajaran$kelasArgs<ExtArgs>
+  riwayatSiswa?: boolean | Prisma.tahunajaran$riwayatSiswaArgs<ExtArgs>
   _count?: boolean | Prisma.TahunajaranCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -453,6 +543,7 @@ export type $tahunajaranPayload<ExtArgs extends runtime.Types.Extensions.Interna
   name: "tahunajaran"
   objects: {
     kelas: Prisma.$kelasPayload<ExtArgs>[]
+    riwayatSiswa: Prisma.$siswakelasriwayatPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -801,6 +892,7 @@ readonly fields: tahunajaranFieldRefs;
 export interface Prisma__tahunajaranClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   kelas<T extends Prisma.tahunajaran$kelasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tahunajaran$kelasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$kelasPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  riwayatSiswa<T extends Prisma.tahunajaran$riwayatSiswaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tahunajaran$riwayatSiswaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$siswakelasriwayatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1204,6 +1296,30 @@ export type tahunajaran$kelasArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.KelasScalarFieldEnum | Prisma.KelasScalarFieldEnum[]
+}
+
+/**
+ * tahunajaran.riwayatSiswa
+ */
+export type tahunajaran$riwayatSiswaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the siswakelasriwayat
+   */
+  select?: Prisma.siswakelasriwayatSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the siswakelasriwayat
+   */
+  omit?: Prisma.siswakelasriwayatOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.siswakelasriwayatInclude<ExtArgs> | null
+  where?: Prisma.siswakelasriwayatWhereInput
+  orderBy?: Prisma.siswakelasriwayatOrderByWithRelationInput | Prisma.siswakelasriwayatOrderByWithRelationInput[]
+  cursor?: Prisma.siswakelasriwayatWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SiswakelasriwayatScalarFieldEnum | Prisma.SiswakelasriwayatScalarFieldEnum[]
 }
 
 /**

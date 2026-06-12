@@ -81,3 +81,18 @@ export type schedule = Prisma.scheduleModel
  * 
  */
 export type user = Prisma.userModel
+/**
+ * Model userrole
+ * 
+ */
+export type userrole = Prisma.userroleModel
+/**
+ * Model siswakelasriwayat
+ * 
+ */
+export type siswakelasriwayat = Prisma.siswakelasriwayatModel
+/**
+ * Model presensigurumapel
+ * 
+ */
+export type presensigurumapel = Prisma.presensigurumapelModel

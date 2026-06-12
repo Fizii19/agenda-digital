@@ -34,7 +34,7 @@ model agendaitem {
 
 model kelas {
   id             String        @id
-  nama           String        @unique(map: "Kelas_nama_key")
+  nama           String
   tingkat        Int
   jurusan        String
   waliKelas      String
@@ -45,8 +45,12 @@ model kelas {
   updatedAt      DateTime
   tahunajaran    tahunajaran?  @relation(fields: [tahunAjaranId], references: [id], onDelete: SetNull, map: "Kelas_tahunAjaranId_fkey")
   subjects       subject[]
+  riwayatSiswa   siswakelasriwayat[]
+  siswaAktif      user[]        @relation("UserActiveKelas")
+  presensiGuruMapel presensigurumapel[]
 
   @@index([tahunAjaranId], map: "Kelas_tahunAjaranId_fkey")
+  @@unique([nama, tahunAjaranId], map: "Kelas_nama_tahunAjaranId_key")
 }
 
 model tahunajaran {
@@ -56,6 +60,7 @@ model tahunajaran {
   createdAt DateTime @default(now())
   updatedAt DateTime
   kelas     kelas[]
+  riwayatSiswa siswakelasriwayat[]
 }
 
 model subject {
@@ -98,6 +103,7 @@ model schedule {
   updatedAt   DateTime @updatedAt
   subject     subject  @relation(fields: [subjectId], references: [id], onDelete: Cascade, map: "Schedule_subjectId_fkey")
   ruangan     ruangan? @relation(fields: [ruanganId], references: [id], onDelete: SetNull, map: "Schedule_ruanganId_fkey")
+  presensiGuruMapel presensigurumapel[]
 
   @@index([subjectId], map: "Schedule_subjectId_fkey")
   @@index([ruanganId], map: "Schedule_ruanganId_fkey")
@@ -109,14 +115,84 @@ model user {
   email     String?   @unique(map: "User_email_key")
   nis       String?   @unique(map: "User_nis_key")
   nip       String?   @unique(map: "User_nip_key")
+  status    String    @default("Aktif")
   password  String    @default("password123")
   role      user_role
   avatar    String?
   kelas     String?
+  kelasId   String?
   createdAt DateTime  @default(now())
   updatedAt DateTime
   agenda    agenda[]
   subjects  subject[]
+  additionalRoles userrole[] @relation("UserAdditionalRoles")
+  assignedRoles userrole[]   @relation("UserAssignedRoles")
+  riwayatKelas siswakelasriwayat[]
+  kelasAktif kelas?    @relation("UserActiveKelas", fields: [kelasId], references: [id], onDelete: SetNull, map: "User_kelasId_fkey")
+  presensiGuruMapel presensigurumapel[] @relation("PresensiGuruMapelGuru")
+  inputPresensiGuruMapel presensigurumapel[] @relation("PresensiGuruMapelInputBy")
+
+  @@index([kelasId], map: "User_kelasId_fkey")
+}
+
+model userrole {
+  id             String    @id
+  userId         String
+  role           user_role
+  assignedBy     String?
+  createdAt      DateTime  @default(now())
+  user           user      @relation("UserAdditionalRoles", fields: [userId], references: [id], onDelete: Cascade, map: "UserRole_userId_fkey")
+  assignedByUser user?     @relation("UserAssignedRoles", fields: [assignedBy], references: [id], onDelete: SetNull, map: "UserRole_assignedBy_fkey")
+
+  @@unique([userId, role], map: "UserRole_userId_role_key")
+  @@index([assignedBy], map: "UserRole_assignedBy_fkey")
+}
+
+model siswakelasriwayat {
+  id             String       @id
+  siswaId        String
+  kelasId        String?
+  kelasNama      String
+  tingkat        Int
+  jurusan        String
+  waliKelas      String
+  tahunAjaran    String
+  tahunAjaranId  String?
+  status         String       @default("aktif")
+  tanggalMasuk   DateTime     @default(now())
+  tanggalKeluar  DateTime?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  siswa          user         @relation(fields: [siswaId], references: [id], onDelete: Cascade, map: "SiswaKelasRiwayat_siswaId_fkey")
+  kelas          kelas?       @relation(fields: [kelasId], references: [id], onDelete: SetNull, map: "SiswaKelasRiwayat_kelasId_fkey")
+  tahunajaran    tahunajaran? @relation(fields: [tahunAjaranId], references: [id], onDelete: SetNull, map: "SiswaKelasRiwayat_tahunAjaranId_fkey")
+
+  @@unique([siswaId, tahunAjaran], map: "SiswaKelasRiwayat_siswaId_tahunAjaran_key")
+  @@index([kelasId], map: "SiswaKelasRiwayat_kelasId_fkey")
+  @@index([tahunAjaranId], map: "SiswaKelasRiwayat_tahunAjaranId_fkey")
+}
+
+model presensigurumapel {
+  id         String   @id
+  tanggal    String
+  kelasId    String
+  scheduleId String
+  guruId     String
+  status     String
+  keterangan String?
+  inputBy    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  kelas      kelas    @relation(fields: [kelasId], references: [id], onDelete: Cascade, map: "PresensiGuruMapel_kelasId_fkey")
+  schedule   schedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade, map: "PresensiGuruMapel_scheduleId_fkey")
+  guru       user     @relation("PresensiGuruMapelGuru", fields: [guruId], references: [id], onDelete: Cascade, map: "PresensiGuruMapel_guruId_fkey")
+  penginput  user     @relation("PresensiGuruMapelInputBy", fields: [inputBy], references: [id], onDelete: Cascade, map: "PresensiGuruMapel_inputBy_fkey")
+
+  @@unique([tanggal, scheduleId], map: "PresensiGuruMapel_tanggal_scheduleId_key")
+  @@index([kelasId], map: "PresensiGuruMapel_kelasId_fkey")
+  @@index([scheduleId], map: "PresensiGuruMapel_scheduleId_fkey")
+  @@index([guruId], map: "PresensiGuruMapel_guruId_fkey")
+  @@index([inputBy], map: "PresensiGuruMapel_inputBy_fkey")
 }
 
 enum user_role {

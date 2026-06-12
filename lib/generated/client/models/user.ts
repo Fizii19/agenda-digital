@@ -30,10 +30,12 @@ export type UserMinAggregateOutputType = {
   email: string | null
   nis: string | null
   nip: string | null
+  status: string | null
   password: string | null
   role: $Enums.user_role | null
   avatar: string | null
   kelas: string | null
+  kelasId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,10 +46,12 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   nis: string | null
   nip: string | null
+  status: string | null
   password: string | null
   role: $Enums.user_role | null
   avatar: string | null
   kelas: string | null
+  kelasId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -58,10 +62,12 @@ export type UserCountAggregateOutputType = {
   email: number
   nis: number
   nip: number
+  status: number
   password: number
   role: number
   avatar: number
   kelas: number
+  kelasId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -74,10 +80,12 @@ export type UserMinAggregateInputType = {
   email?: true
   nis?: true
   nip?: true
+  status?: true
   password?: true
   role?: true
   avatar?: true
   kelas?: true
+  kelasId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -88,10 +96,12 @@ export type UserMaxAggregateInputType = {
   email?: true
   nis?: true
   nip?: true
+  status?: true
   password?: true
   role?: true
   avatar?: true
   kelas?: true
+  kelasId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -102,10 +112,12 @@ export type UserCountAggregateInputType = {
   email?: true
   nis?: true
   nip?: true
+  status?: true
   password?: true
   role?: true
   avatar?: true
   kelas?: true
+  kelasId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -189,10 +201,12 @@ export type UserGroupByOutputType = {
   email: string | null
   nis: string | null
   nip: string | null
+  status: string
   password: string
   role: $Enums.user_role
   avatar: string | null
   kelas: string | null
+  kelasId: string | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -224,14 +238,22 @@ export type userWhereInput = {
   email?: Prisma.StringNullableFilter<"user"> | string | null
   nis?: Prisma.StringNullableFilter<"user"> | string | null
   nip?: Prisma.StringNullableFilter<"user"> | string | null
+  status?: Prisma.StringFilter<"user"> | string
   password?: Prisma.StringFilter<"user"> | string
   role?: Prisma.Enumuser_roleFilter<"user"> | $Enums.user_role
   avatar?: Prisma.StringNullableFilter<"user"> | string | null
   kelas?: Prisma.StringNullableFilter<"user"> | string | null
+  kelasId?: Prisma.StringNullableFilter<"user"> | string | null
   createdAt?: Prisma.DateTimeFilter<"user"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"user"> | Date | string
   agenda?: Prisma.AgendaListRelationFilter
   subjects?: Prisma.SubjectListRelationFilter
+  additionalRoles?: Prisma.UserroleListRelationFilter
+  assignedRoles?: Prisma.UserroleListRelationFilter
+  riwayatKelas?: Prisma.SiswakelasriwayatListRelationFilter
+  kelasAktif?: Prisma.XOR<Prisma.KelasNullableScalarRelationFilter, Prisma.kelasWhereInput> | null
+  presensiGuruMapel?: Prisma.PresensigurumapelListRelationFilter
+  inputPresensiGuruMapel?: Prisma.PresensigurumapelListRelationFilter
 }
 
 export type userOrderByWithRelationInput = {
@@ -240,14 +262,22 @@ export type userOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   nis?: Prisma.SortOrderInput | Prisma.SortOrder
   nip?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   kelas?: Prisma.SortOrderInput | Prisma.SortOrder
+  kelasId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   agenda?: Prisma.agendaOrderByRelationAggregateInput
   subjects?: Prisma.subjectOrderByRelationAggregateInput
+  additionalRoles?: Prisma.userroleOrderByRelationAggregateInput
+  assignedRoles?: Prisma.userroleOrderByRelationAggregateInput
+  riwayatKelas?: Prisma.siswakelasriwayatOrderByRelationAggregateInput
+  kelasAktif?: Prisma.kelasOrderByWithRelationInput
+  presensiGuruMapel?: Prisma.presensigurumapelOrderByRelationAggregateInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelOrderByRelationAggregateInput
   _relevance?: Prisma.userOrderByRelevanceInput
 }
 
@@ -260,14 +290,22 @@ export type userWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.userWhereInput[]
   NOT?: Prisma.userWhereInput | Prisma.userWhereInput[]
   name?: Prisma.StringFilter<"user"> | string
+  status?: Prisma.StringFilter<"user"> | string
   password?: Prisma.StringFilter<"user"> | string
   role?: Prisma.Enumuser_roleFilter<"user"> | $Enums.user_role
   avatar?: Prisma.StringNullableFilter<"user"> | string | null
   kelas?: Prisma.StringNullableFilter<"user"> | string | null
+  kelasId?: Prisma.StringNullableFilter<"user"> | string | null
   createdAt?: Prisma.DateTimeFilter<"user"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"user"> | Date | string
   agenda?: Prisma.AgendaListRelationFilter
   subjects?: Prisma.SubjectListRelationFilter
+  additionalRoles?: Prisma.UserroleListRelationFilter
+  assignedRoles?: Prisma.UserroleListRelationFilter
+  riwayatKelas?: Prisma.SiswakelasriwayatListRelationFilter
+  kelasAktif?: Prisma.XOR<Prisma.KelasNullableScalarRelationFilter, Prisma.kelasWhereInput> | null
+  presensiGuruMapel?: Prisma.PresensigurumapelListRelationFilter
+  inputPresensiGuruMapel?: Prisma.PresensigurumapelListRelationFilter
 }, "id" | "email" | "nis" | "nip">
 
 export type userOrderByWithAggregationInput = {
@@ -276,10 +314,12 @@ export type userOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   nis?: Prisma.SortOrderInput | Prisma.SortOrder
   nip?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   avatar?: Prisma.SortOrderInput | Prisma.SortOrder
   kelas?: Prisma.SortOrderInput | Prisma.SortOrder
+  kelasId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.userCountOrderByAggregateInput
@@ -296,10 +336,12 @@ export type userScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"user"> | string | null
   nis?: Prisma.StringNullableWithAggregatesFilter<"user"> | string | null
   nip?: Prisma.StringNullableWithAggregatesFilter<"user"> | string | null
+  status?: Prisma.StringWithAggregatesFilter<"user"> | string
   password?: Prisma.StringWithAggregatesFilter<"user"> | string
   role?: Prisma.Enumuser_roleWithAggregatesFilter<"user"> | $Enums.user_role
   avatar?: Prisma.StringNullableWithAggregatesFilter<"user"> | string | null
   kelas?: Prisma.StringNullableWithAggregatesFilter<"user"> | string | null
+  kelasId?: Prisma.StringNullableWithAggregatesFilter<"user"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"user"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"user"> | Date | string
 }
@@ -310,6 +352,7 @@ export type userCreateInput = {
   email?: string | null
   nis?: string | null
   nip?: string | null
+  status?: string
   password?: string
   role: $Enums.user_role
   avatar?: string | null
@@ -318,6 +361,12 @@ export type userCreateInput = {
   updatedAt: Date | string
   agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
   subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
 }
 
 export type userUncheckedCreateInput = {
@@ -326,14 +375,21 @@ export type userUncheckedCreateInput = {
   email?: string | null
   nis?: string | null
   nip?: string | null
+  status?: string
   password?: string
   role: $Enums.user_role
   avatar?: string | null
   kelas?: string | null
+  kelasId?: string | null
   createdAt?: Date | string
   updatedAt: Date | string
   agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
   subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
 }
 
 export type userUpdateInput = {
@@ -342,6 +398,7 @@ export type userUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -350,6 +407,12 @@ export type userUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
   subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
 }
 
 export type userUncheckedUpdateInput = {
@@ -358,14 +421,21 @@ export type userUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
   subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
 }
 
 export type userCreateManyInput = {
@@ -374,10 +444,12 @@ export type userCreateManyInput = {
   email?: string | null
   nis?: string | null
   nip?: string | null
+  status?: string
   password?: string
   role: $Enums.user_role
   avatar?: string | null
   kelas?: string | null
+  kelasId?: string | null
   createdAt?: Date | string
   updatedAt: Date | string
 }
@@ -388,6 +460,7 @@ export type userUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -402,10 +475,12 @@ export type userUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -413,6 +488,16 @@ export type userUncheckedUpdateManyInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.userWhereInput
   isNot?: Prisma.userWhereInput
+}
+
+export type UserListRelationFilter = {
+  every?: Prisma.userWhereInput
+  some?: Prisma.userWhereInput
+  none?: Prisma.userWhereInput
+}
+
+export type userOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type userOrderByRelevanceInput = {
@@ -427,10 +512,12 @@ export type userCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   nis?: Prisma.SortOrder
   nip?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   kelas?: Prisma.SortOrder
+  kelasId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -441,10 +528,12 @@ export type userMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   nis?: Prisma.SortOrder
   nip?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   kelas?: Prisma.SortOrder
+  kelasId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -455,12 +544,19 @@ export type userMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   nis?: Prisma.SortOrder
   nip?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   avatar?: Prisma.SortOrder
   kelas?: Prisma.SortOrder
+  kelasId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.userWhereInput | null
+  isNot?: Prisma.userWhereInput | null
 }
 
 export type userCreateNestedOneWithoutAgendaInput = {
@@ -475,6 +571,48 @@ export type userUpdateOneRequiredWithoutAgendaNestedInput = {
   upsert?: Prisma.userUpsertWithoutAgendaInput
   connect?: Prisma.userWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.userUpdateToOneWithWhereWithoutAgendaInput, Prisma.userUpdateWithoutAgendaInput>, Prisma.userUncheckedUpdateWithoutAgendaInput>
+}
+
+export type userCreateNestedManyWithoutKelasAktifInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutKelasAktifInput, Prisma.userUncheckedCreateWithoutKelasAktifInput> | Prisma.userCreateWithoutKelasAktifInput[] | Prisma.userUncheckedCreateWithoutKelasAktifInput[]
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutKelasAktifInput | Prisma.userCreateOrConnectWithoutKelasAktifInput[]
+  createMany?: Prisma.userCreateManyKelasAktifInputEnvelope
+  connect?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+}
+
+export type userUncheckedCreateNestedManyWithoutKelasAktifInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutKelasAktifInput, Prisma.userUncheckedCreateWithoutKelasAktifInput> | Prisma.userCreateWithoutKelasAktifInput[] | Prisma.userUncheckedCreateWithoutKelasAktifInput[]
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutKelasAktifInput | Prisma.userCreateOrConnectWithoutKelasAktifInput[]
+  createMany?: Prisma.userCreateManyKelasAktifInputEnvelope
+  connect?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+}
+
+export type userUpdateManyWithoutKelasAktifNestedInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutKelasAktifInput, Prisma.userUncheckedCreateWithoutKelasAktifInput> | Prisma.userCreateWithoutKelasAktifInput[] | Prisma.userUncheckedCreateWithoutKelasAktifInput[]
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutKelasAktifInput | Prisma.userCreateOrConnectWithoutKelasAktifInput[]
+  upsert?: Prisma.userUpsertWithWhereUniqueWithoutKelasAktifInput | Prisma.userUpsertWithWhereUniqueWithoutKelasAktifInput[]
+  createMany?: Prisma.userCreateManyKelasAktifInputEnvelope
+  set?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  disconnect?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  delete?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  connect?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  update?: Prisma.userUpdateWithWhereUniqueWithoutKelasAktifInput | Prisma.userUpdateWithWhereUniqueWithoutKelasAktifInput[]
+  updateMany?: Prisma.userUpdateManyWithWhereWithoutKelasAktifInput | Prisma.userUpdateManyWithWhereWithoutKelasAktifInput[]
+  deleteMany?: Prisma.userScalarWhereInput | Prisma.userScalarWhereInput[]
+}
+
+export type userUncheckedUpdateManyWithoutKelasAktifNestedInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutKelasAktifInput, Prisma.userUncheckedCreateWithoutKelasAktifInput> | Prisma.userCreateWithoutKelasAktifInput[] | Prisma.userUncheckedCreateWithoutKelasAktifInput[]
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutKelasAktifInput | Prisma.userCreateOrConnectWithoutKelasAktifInput[]
+  upsert?: Prisma.userUpsertWithWhereUniqueWithoutKelasAktifInput | Prisma.userUpsertWithWhereUniqueWithoutKelasAktifInput[]
+  createMany?: Prisma.userCreateManyKelasAktifInputEnvelope
+  set?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  disconnect?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  delete?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  connect?: Prisma.userWhereUniqueInput | Prisma.userWhereUniqueInput[]
+  update?: Prisma.userUpdateWithWhereUniqueWithoutKelasAktifInput | Prisma.userUpdateWithWhereUniqueWithoutKelasAktifInput[]
+  updateMany?: Prisma.userUpdateManyWithWhereWithoutKelasAktifInput | Prisma.userUpdateManyWithWhereWithoutKelasAktifInput[]
+  deleteMany?: Prisma.userScalarWhereInput | Prisma.userScalarWhereInput[]
 }
 
 export type userCreateNestedOneWithoutSubjectsInput = {
@@ -495,12 +633,85 @@ export type Enumuser_roleFieldUpdateOperationsInput = {
   set?: $Enums.user_role
 }
 
+export type userCreateNestedOneWithoutAdditionalRolesInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutAdditionalRolesInput, Prisma.userUncheckedCreateWithoutAdditionalRolesInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutAdditionalRolesInput
+  connect?: Prisma.userWhereUniqueInput
+}
+
+export type userCreateNestedOneWithoutAssignedRolesInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutAssignedRolesInput, Prisma.userUncheckedCreateWithoutAssignedRolesInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutAssignedRolesInput
+  connect?: Prisma.userWhereUniqueInput
+}
+
+export type userUpdateOneRequiredWithoutAdditionalRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutAdditionalRolesInput, Prisma.userUncheckedCreateWithoutAdditionalRolesInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutAdditionalRolesInput
+  upsert?: Prisma.userUpsertWithoutAdditionalRolesInput
+  connect?: Prisma.userWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.userUpdateToOneWithWhereWithoutAdditionalRolesInput, Prisma.userUpdateWithoutAdditionalRolesInput>, Prisma.userUncheckedUpdateWithoutAdditionalRolesInput>
+}
+
+export type userUpdateOneWithoutAssignedRolesNestedInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutAssignedRolesInput, Prisma.userUncheckedCreateWithoutAssignedRolesInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutAssignedRolesInput
+  upsert?: Prisma.userUpsertWithoutAssignedRolesInput
+  disconnect?: Prisma.userWhereInput | boolean
+  delete?: Prisma.userWhereInput | boolean
+  connect?: Prisma.userWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.userUpdateToOneWithWhereWithoutAssignedRolesInput, Prisma.userUpdateWithoutAssignedRolesInput>, Prisma.userUncheckedUpdateWithoutAssignedRolesInput>
+}
+
+export type userCreateNestedOneWithoutRiwayatKelasInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutRiwayatKelasInput, Prisma.userUncheckedCreateWithoutRiwayatKelasInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutRiwayatKelasInput
+  connect?: Prisma.userWhereUniqueInput
+}
+
+export type userUpdateOneRequiredWithoutRiwayatKelasNestedInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutRiwayatKelasInput, Prisma.userUncheckedCreateWithoutRiwayatKelasInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutRiwayatKelasInput
+  upsert?: Prisma.userUpsertWithoutRiwayatKelasInput
+  connect?: Prisma.userWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.userUpdateToOneWithWhereWithoutRiwayatKelasInput, Prisma.userUpdateWithoutRiwayatKelasInput>, Prisma.userUncheckedUpdateWithoutRiwayatKelasInput>
+}
+
+export type userCreateNestedOneWithoutPresensiGuruMapelInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutPresensiGuruMapelInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutPresensiGuruMapelInput
+  connect?: Prisma.userWhereUniqueInput
+}
+
+export type userCreateNestedOneWithoutInputPresensiGuruMapelInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutInputPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutInputPresensiGuruMapelInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutInputPresensiGuruMapelInput
+  connect?: Prisma.userWhereUniqueInput
+}
+
+export type userUpdateOneRequiredWithoutPresensiGuruMapelNestedInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutPresensiGuruMapelInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutPresensiGuruMapelInput
+  upsert?: Prisma.userUpsertWithoutPresensiGuruMapelInput
+  connect?: Prisma.userWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.userUpdateToOneWithWhereWithoutPresensiGuruMapelInput, Prisma.userUpdateWithoutPresensiGuruMapelInput>, Prisma.userUncheckedUpdateWithoutPresensiGuruMapelInput>
+}
+
+export type userUpdateOneRequiredWithoutInputPresensiGuruMapelNestedInput = {
+  create?: Prisma.XOR<Prisma.userCreateWithoutInputPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutInputPresensiGuruMapelInput>
+  connectOrCreate?: Prisma.userCreateOrConnectWithoutInputPresensiGuruMapelInput
+  upsert?: Prisma.userUpsertWithoutInputPresensiGuruMapelInput
+  connect?: Prisma.userWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.userUpdateToOneWithWhereWithoutInputPresensiGuruMapelInput, Prisma.userUpdateWithoutInputPresensiGuruMapelInput>, Prisma.userUncheckedUpdateWithoutInputPresensiGuruMapelInput>
+}
+
 export type userCreateWithoutAgendaInput = {
   id: string
   name: string
   email?: string | null
   nis?: string | null
   nip?: string | null
+  status?: string
   password?: string
   role: $Enums.user_role
   avatar?: string | null
@@ -508,6 +719,12 @@ export type userCreateWithoutAgendaInput = {
   createdAt?: Date | string
   updatedAt: Date | string
   subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
 }
 
 export type userUncheckedCreateWithoutAgendaInput = {
@@ -516,13 +733,20 @@ export type userUncheckedCreateWithoutAgendaInput = {
   email?: string | null
   nis?: string | null
   nip?: string | null
+  status?: string
   password?: string
   role: $Enums.user_role
   avatar?: string | null
   kelas?: string | null
+  kelasId?: string | null
   createdAt?: Date | string
   updatedAt: Date | string
   subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
 }
 
 export type userCreateOrConnectWithoutAgendaInput = {
@@ -547,6 +771,7 @@ export type userUpdateWithoutAgendaInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -554,6 +779,12 @@ export type userUpdateWithoutAgendaInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
 }
 
 export type userUncheckedUpdateWithoutAgendaInput = {
@@ -562,13 +793,109 @@ export type userUncheckedUpdateWithoutAgendaInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
+}
+
+export type userCreateWithoutKelasAktifInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
+}
+
+export type userUncheckedCreateWithoutKelasAktifInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
+}
+
+export type userCreateOrConnectWithoutKelasAktifInput = {
+  where: Prisma.userWhereUniqueInput
+  create: Prisma.XOR<Prisma.userCreateWithoutKelasAktifInput, Prisma.userUncheckedCreateWithoutKelasAktifInput>
+}
+
+export type userCreateManyKelasAktifInputEnvelope = {
+  data: Prisma.userCreateManyKelasAktifInput | Prisma.userCreateManyKelasAktifInput[]
+  skipDuplicates?: boolean
+}
+
+export type userUpsertWithWhereUniqueWithoutKelasAktifInput = {
+  where: Prisma.userWhereUniqueInput
+  update: Prisma.XOR<Prisma.userUpdateWithoutKelasAktifInput, Prisma.userUncheckedUpdateWithoutKelasAktifInput>
+  create: Prisma.XOR<Prisma.userCreateWithoutKelasAktifInput, Prisma.userUncheckedCreateWithoutKelasAktifInput>
+}
+
+export type userUpdateWithWhereUniqueWithoutKelasAktifInput = {
+  where: Prisma.userWhereUniqueInput
+  data: Prisma.XOR<Prisma.userUpdateWithoutKelasAktifInput, Prisma.userUncheckedUpdateWithoutKelasAktifInput>
+}
+
+export type userUpdateManyWithWhereWithoutKelasAktifInput = {
+  where: Prisma.userScalarWhereInput
+  data: Prisma.XOR<Prisma.userUpdateManyMutationInput, Prisma.userUncheckedUpdateManyWithoutKelasAktifInput>
+}
+
+export type userScalarWhereInput = {
+  AND?: Prisma.userScalarWhereInput | Prisma.userScalarWhereInput[]
+  OR?: Prisma.userScalarWhereInput[]
+  NOT?: Prisma.userScalarWhereInput | Prisma.userScalarWhereInput[]
+  id?: Prisma.StringFilter<"user"> | string
+  name?: Prisma.StringFilter<"user"> | string
+  email?: Prisma.StringNullableFilter<"user"> | string | null
+  nis?: Prisma.StringNullableFilter<"user"> | string | null
+  nip?: Prisma.StringNullableFilter<"user"> | string | null
+  status?: Prisma.StringFilter<"user"> | string
+  password?: Prisma.StringFilter<"user"> | string
+  role?: Prisma.Enumuser_roleFilter<"user"> | $Enums.user_role
+  avatar?: Prisma.StringNullableFilter<"user"> | string | null
+  kelas?: Prisma.StringNullableFilter<"user"> | string | null
+  kelasId?: Prisma.StringNullableFilter<"user"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"user"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"user"> | Date | string
 }
 
 export type userCreateWithoutSubjectsInput = {
@@ -577,6 +904,7 @@ export type userCreateWithoutSubjectsInput = {
   email?: string | null
   nis?: string | null
   nip?: string | null
+  status?: string
   password?: string
   role: $Enums.user_role
   avatar?: string | null
@@ -584,6 +912,12 @@ export type userCreateWithoutSubjectsInput = {
   createdAt?: Date | string
   updatedAt: Date | string
   agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
 }
 
 export type userUncheckedCreateWithoutSubjectsInput = {
@@ -592,13 +926,20 @@ export type userUncheckedCreateWithoutSubjectsInput = {
   email?: string | null
   nis?: string | null
   nip?: string | null
+  status?: string
   password?: string
   role: $Enums.user_role
   avatar?: string | null
   kelas?: string | null
+  kelasId?: string | null
   createdAt?: Date | string
   updatedAt: Date | string
   agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
 }
 
 export type userCreateOrConnectWithoutSubjectsInput = {
@@ -623,6 +964,7 @@ export type userUpdateWithoutSubjectsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -630,6 +972,12 @@ export type userUpdateWithoutSubjectsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
 }
 
 export type userUncheckedUpdateWithoutSubjectsInput = {
@@ -638,6 +986,586 @@ export type userUncheckedUpdateWithoutSubjectsInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
+}
+
+export type userCreateWithoutAdditionalRolesInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
+}
+
+export type userUncheckedCreateWithoutAdditionalRolesInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  kelasId?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
+}
+
+export type userCreateOrConnectWithoutAdditionalRolesInput = {
+  where: Prisma.userWhereUniqueInput
+  create: Prisma.XOR<Prisma.userCreateWithoutAdditionalRolesInput, Prisma.userUncheckedCreateWithoutAdditionalRolesInput>
+}
+
+export type userCreateWithoutAssignedRolesInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
+}
+
+export type userUncheckedCreateWithoutAssignedRolesInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  kelasId?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
+}
+
+export type userCreateOrConnectWithoutAssignedRolesInput = {
+  where: Prisma.userWhereUniqueInput
+  create: Prisma.XOR<Prisma.userCreateWithoutAssignedRolesInput, Prisma.userUncheckedCreateWithoutAssignedRolesInput>
+}
+
+export type userUpsertWithoutAdditionalRolesInput = {
+  update: Prisma.XOR<Prisma.userUpdateWithoutAdditionalRolesInput, Prisma.userUncheckedUpdateWithoutAdditionalRolesInput>
+  create: Prisma.XOR<Prisma.userCreateWithoutAdditionalRolesInput, Prisma.userUncheckedCreateWithoutAdditionalRolesInput>
+  where?: Prisma.userWhereInput
+}
+
+export type userUpdateToOneWithWhereWithoutAdditionalRolesInput = {
+  where?: Prisma.userWhereInput
+  data: Prisma.XOR<Prisma.userUpdateWithoutAdditionalRolesInput, Prisma.userUncheckedUpdateWithoutAdditionalRolesInput>
+}
+
+export type userUpdateWithoutAdditionalRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUncheckedUpdateWithoutAdditionalRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUpsertWithoutAssignedRolesInput = {
+  update: Prisma.XOR<Prisma.userUpdateWithoutAssignedRolesInput, Prisma.userUncheckedUpdateWithoutAssignedRolesInput>
+  create: Prisma.XOR<Prisma.userCreateWithoutAssignedRolesInput, Prisma.userUncheckedCreateWithoutAssignedRolesInput>
+  where?: Prisma.userWhereInput
+}
+
+export type userUpdateToOneWithWhereWithoutAssignedRolesInput = {
+  where?: Prisma.userWhereInput
+  data: Prisma.XOR<Prisma.userUpdateWithoutAssignedRolesInput, Prisma.userUncheckedUpdateWithoutAssignedRolesInput>
+}
+
+export type userUpdateWithoutAssignedRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUncheckedUpdateWithoutAssignedRolesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
+}
+
+export type userCreateWithoutRiwayatKelasInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
+}
+
+export type userUncheckedCreateWithoutRiwayatKelasInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  kelasId?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
+}
+
+export type userCreateOrConnectWithoutRiwayatKelasInput = {
+  where: Prisma.userWhereUniqueInput
+  create: Prisma.XOR<Prisma.userCreateWithoutRiwayatKelasInput, Prisma.userUncheckedCreateWithoutRiwayatKelasInput>
+}
+
+export type userUpsertWithoutRiwayatKelasInput = {
+  update: Prisma.XOR<Prisma.userUpdateWithoutRiwayatKelasInput, Prisma.userUncheckedUpdateWithoutRiwayatKelasInput>
+  create: Prisma.XOR<Prisma.userCreateWithoutRiwayatKelasInput, Prisma.userUncheckedCreateWithoutRiwayatKelasInput>
+  where?: Prisma.userWhereInput
+}
+
+export type userUpdateToOneWithWhereWithoutRiwayatKelasInput = {
+  where?: Prisma.userWhereInput
+  data: Prisma.XOR<Prisma.userUpdateWithoutRiwayatKelasInput, Prisma.userUncheckedUpdateWithoutRiwayatKelasInput>
+}
+
+export type userUpdateWithoutRiwayatKelasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUncheckedUpdateWithoutRiwayatKelasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
+}
+
+export type userCreateWithoutPresensiGuruMapelInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutPenginputInput
+}
+
+export type userUncheckedCreateWithoutPresensiGuruMapelInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  kelasId?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutPenginputInput
+}
+
+export type userCreateOrConnectWithoutPresensiGuruMapelInput = {
+  where: Prisma.userWhereUniqueInput
+  create: Prisma.XOR<Prisma.userCreateWithoutPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutPresensiGuruMapelInput>
+}
+
+export type userCreateWithoutInputPresensiGuruMapelInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatCreateNestedManyWithoutSiswaInput
+  kelasAktif?: Prisma.kelasCreateNestedOneWithoutSiswaAktifInput
+  presensiGuruMapel?: Prisma.presensigurumapelCreateNestedManyWithoutGuruInput
+}
+
+export type userUncheckedCreateWithoutInputPresensiGuruMapelInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  kelasId?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+  agenda?: Prisma.agendaUncheckedCreateNestedManyWithoutUserInput
+  subjects?: Prisma.subjectUncheckedCreateNestedManyWithoutGuruInput
+  additionalRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutUserInput
+  assignedRoles?: Prisma.userroleUncheckedCreateNestedManyWithoutAssignedByUserInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedCreateNestedManyWithoutSiswaInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedCreateNestedManyWithoutGuruInput
+}
+
+export type userCreateOrConnectWithoutInputPresensiGuruMapelInput = {
+  where: Prisma.userWhereUniqueInput
+  create: Prisma.XOR<Prisma.userCreateWithoutInputPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutInputPresensiGuruMapelInput>
+}
+
+export type userUpsertWithoutPresensiGuruMapelInput = {
+  update: Prisma.XOR<Prisma.userUpdateWithoutPresensiGuruMapelInput, Prisma.userUncheckedUpdateWithoutPresensiGuruMapelInput>
+  create: Prisma.XOR<Prisma.userCreateWithoutPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutPresensiGuruMapelInput>
+  where?: Prisma.userWhereInput
+}
+
+export type userUpdateToOneWithWhereWithoutPresensiGuruMapelInput = {
+  where?: Prisma.userWhereInput
+  data: Prisma.XOR<Prisma.userUpdateWithoutPresensiGuruMapelInput, Prisma.userUncheckedUpdateWithoutPresensiGuruMapelInput>
+}
+
+export type userUpdateWithoutPresensiGuruMapelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUncheckedUpdateWithoutPresensiGuruMapelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUpsertWithoutInputPresensiGuruMapelInput = {
+  update: Prisma.XOR<Prisma.userUpdateWithoutInputPresensiGuruMapelInput, Prisma.userUncheckedUpdateWithoutInputPresensiGuruMapelInput>
+  create: Prisma.XOR<Prisma.userCreateWithoutInputPresensiGuruMapelInput, Prisma.userUncheckedCreateWithoutInputPresensiGuruMapelInput>
+  where?: Prisma.userWhereInput
+}
+
+export type userUpdateToOneWithWhereWithoutInputPresensiGuruMapelInput = {
+  where?: Prisma.userWhereInput
+  data: Prisma.XOR<Prisma.userUpdateWithoutInputPresensiGuruMapelInput, Prisma.userUncheckedUpdateWithoutInputPresensiGuruMapelInput>
+}
+
+export type userUpdateWithoutInputPresensiGuruMapelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  kelasAktif?: Prisma.kelasUpdateOneWithoutSiswaAktifNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+}
+
+export type userUncheckedUpdateWithoutInputPresensiGuruMapelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelasId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+}
+
+export type userCreateManyKelasAktifInput = {
+  id: string
+  name: string
+  email?: string | null
+  nis?: string | null
+  nip?: string | null
+  status?: string
+  password?: string
+  role: $Enums.user_role
+  avatar?: string | null
+  kelas?: string | null
+  createdAt?: Date | string
+  updatedAt: Date | string
+}
+
+export type userUpdateWithoutKelasAktifInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  agenda?: Prisma.agendaUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUncheckedUpdateWithoutKelasAktifInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
   avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -645,6 +1573,27 @@ export type userUncheckedUpdateWithoutSubjectsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   agenda?: Prisma.agendaUncheckedUpdateManyWithoutUserNestedInput
+  subjects?: Prisma.subjectUncheckedUpdateManyWithoutGuruNestedInput
+  additionalRoles?: Prisma.userroleUncheckedUpdateManyWithoutUserNestedInput
+  assignedRoles?: Prisma.userroleUncheckedUpdateManyWithoutAssignedByUserNestedInput
+  riwayatKelas?: Prisma.siswakelasriwayatUncheckedUpdateManyWithoutSiswaNestedInput
+  presensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutGuruNestedInput
+  inputPresensiGuruMapel?: Prisma.presensigurumapelUncheckedUpdateManyWithoutPenginputNestedInput
+}
+
+export type userUncheckedUpdateManyWithoutKelasAktifInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nip?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.Enumuser_roleFieldUpdateOperationsInput | $Enums.user_role
+  avatar?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  kelas?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -655,11 +1604,21 @@ export type userUncheckedUpdateWithoutSubjectsInput = {
 export type UserCountOutputType = {
   agenda: number
   subjects: number
+  additionalRoles: number
+  assignedRoles: number
+  riwayatKelas: number
+  presensiGuruMapel: number
+  inputPresensiGuruMapel: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agenda?: boolean | UserCountOutputTypeCountAgendaArgs
   subjects?: boolean | UserCountOutputTypeCountSubjectsArgs
+  additionalRoles?: boolean | UserCountOutputTypeCountAdditionalRolesArgs
+  assignedRoles?: boolean | UserCountOutputTypeCountAssignedRolesArgs
+  riwayatKelas?: boolean | UserCountOutputTypeCountRiwayatKelasArgs
+  presensiGuruMapel?: boolean | UserCountOutputTypeCountPresensiGuruMapelArgs
+  inputPresensiGuruMapel?: boolean | UserCountOutputTypeCountInputPresensiGuruMapelArgs
 }
 
 /**
@@ -686,6 +1645,41 @@ export type UserCountOutputTypeCountSubjectsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.subjectWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAdditionalRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.userroleWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.userroleWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRiwayatKelasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.siswakelasriwayatWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPresensiGuruMapelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.presensigurumapelWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInputPresensiGuruMapelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.presensigurumapelWhereInput
+}
+
 
 export type userSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -693,14 +1687,22 @@ export type userSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   nis?: boolean
   nip?: boolean
+  status?: boolean
   password?: boolean
   role?: boolean
   avatar?: boolean
   kelas?: boolean
+  kelasId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   agenda?: boolean | Prisma.user$agendaArgs<ExtArgs>
   subjects?: boolean | Prisma.user$subjectsArgs<ExtArgs>
+  additionalRoles?: boolean | Prisma.user$additionalRolesArgs<ExtArgs>
+  assignedRoles?: boolean | Prisma.user$assignedRolesArgs<ExtArgs>
+  riwayatKelas?: boolean | Prisma.user$riwayatKelasArgs<ExtArgs>
+  kelasAktif?: boolean | Prisma.user$kelasAktifArgs<ExtArgs>
+  presensiGuruMapel?: boolean | Prisma.user$presensiGuruMapelArgs<ExtArgs>
+  inputPresensiGuruMapel?: boolean | Prisma.user$inputPresensiGuruMapelArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -712,18 +1714,26 @@ export type userSelectScalar = {
   email?: boolean
   nis?: boolean
   nip?: boolean
+  status?: boolean
   password?: boolean
   role?: boolean
   avatar?: boolean
   kelas?: boolean
+  kelasId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type userOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "nis" | "nip" | "password" | "role" | "avatar" | "kelas" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type userOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "nis" | "nip" | "status" | "password" | "role" | "avatar" | "kelas" | "kelasId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type userInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agenda?: boolean | Prisma.user$agendaArgs<ExtArgs>
   subjects?: boolean | Prisma.user$subjectsArgs<ExtArgs>
+  additionalRoles?: boolean | Prisma.user$additionalRolesArgs<ExtArgs>
+  assignedRoles?: boolean | Prisma.user$assignedRolesArgs<ExtArgs>
+  riwayatKelas?: boolean | Prisma.user$riwayatKelasArgs<ExtArgs>
+  kelasAktif?: boolean | Prisma.user$kelasAktifArgs<ExtArgs>
+  presensiGuruMapel?: boolean | Prisma.user$presensiGuruMapelArgs<ExtArgs>
+  inputPresensiGuruMapel?: boolean | Prisma.user$inputPresensiGuruMapelArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -732,6 +1742,12 @@ export type $userPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     agenda: Prisma.$agendaPayload<ExtArgs>[]
     subjects: Prisma.$subjectPayload<ExtArgs>[]
+    additionalRoles: Prisma.$userrolePayload<ExtArgs>[]
+    assignedRoles: Prisma.$userrolePayload<ExtArgs>[]
+    riwayatKelas: Prisma.$siswakelasriwayatPayload<ExtArgs>[]
+    kelasAktif: Prisma.$kelasPayload<ExtArgs> | null
+    presensiGuruMapel: Prisma.$presensigurumapelPayload<ExtArgs>[]
+    inputPresensiGuruMapel: Prisma.$presensigurumapelPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -739,10 +1755,12 @@ export type $userPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string | null
     nis: string | null
     nip: string | null
+    status: string
     password: string
     role: $Enums.user_role
     avatar: string | null
     kelas: string | null
+    kelasId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1087,6 +2105,12 @@ export interface Prisma__userClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   agenda<T extends Prisma.user$agendaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$agendaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$agendaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subjects<T extends Prisma.user$subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$subjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  additionalRoles<T extends Prisma.user$additionalRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$additionalRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$userrolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignedRoles<T extends Prisma.user$assignedRolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$assignedRolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$userrolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  riwayatKelas<T extends Prisma.user$riwayatKelasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$riwayatKelasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$siswakelasriwayatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  kelasAktif<T extends Prisma.user$kelasAktifArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$kelasAktifArgs<ExtArgs>>): Prisma.Prisma__kelasClient<runtime.Types.Result.GetResult<Prisma.$kelasPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  presensiGuruMapel<T extends Prisma.user$presensiGuruMapelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$presensiGuruMapelArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$presensigurumapelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  inputPresensiGuruMapel<T extends Prisma.user$inputPresensiGuruMapelArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user$inputPresensiGuruMapelArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$presensigurumapelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1121,10 +2145,12 @@ export interface userFieldRefs {
   readonly email: Prisma.FieldRef<"user", 'String'>
   readonly nis: Prisma.FieldRef<"user", 'String'>
   readonly nip: Prisma.FieldRef<"user", 'String'>
+  readonly status: Prisma.FieldRef<"user", 'String'>
   readonly password: Prisma.FieldRef<"user", 'String'>
   readonly role: Prisma.FieldRef<"user", 'user_role'>
   readonly avatar: Prisma.FieldRef<"user", 'String'>
   readonly kelas: Prisma.FieldRef<"user", 'String'>
+  readonly kelasId: Prisma.FieldRef<"user", 'String'>
   readonly createdAt: Prisma.FieldRef<"user", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"user", 'DateTime'>
 }
@@ -1520,6 +2546,145 @@ export type user$subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.SubjectScalarFieldEnum | Prisma.SubjectScalarFieldEnum[]
+}
+
+/**
+ * user.additionalRoles
+ */
+export type user$additionalRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the userrole
+   */
+  select?: Prisma.userroleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the userrole
+   */
+  omit?: Prisma.userroleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.userroleInclude<ExtArgs> | null
+  where?: Prisma.userroleWhereInput
+  orderBy?: Prisma.userroleOrderByWithRelationInput | Prisma.userroleOrderByWithRelationInput[]
+  cursor?: Prisma.userroleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserroleScalarFieldEnum | Prisma.UserroleScalarFieldEnum[]
+}
+
+/**
+ * user.assignedRoles
+ */
+export type user$assignedRolesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the userrole
+   */
+  select?: Prisma.userroleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the userrole
+   */
+  omit?: Prisma.userroleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.userroleInclude<ExtArgs> | null
+  where?: Prisma.userroleWhereInput
+  orderBy?: Prisma.userroleOrderByWithRelationInput | Prisma.userroleOrderByWithRelationInput[]
+  cursor?: Prisma.userroleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserroleScalarFieldEnum | Prisma.UserroleScalarFieldEnum[]
+}
+
+/**
+ * user.riwayatKelas
+ */
+export type user$riwayatKelasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the siswakelasriwayat
+   */
+  select?: Prisma.siswakelasriwayatSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the siswakelasriwayat
+   */
+  omit?: Prisma.siswakelasriwayatOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.siswakelasriwayatInclude<ExtArgs> | null
+  where?: Prisma.siswakelasriwayatWhereInput
+  orderBy?: Prisma.siswakelasriwayatOrderByWithRelationInput | Prisma.siswakelasriwayatOrderByWithRelationInput[]
+  cursor?: Prisma.siswakelasriwayatWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SiswakelasriwayatScalarFieldEnum | Prisma.SiswakelasriwayatScalarFieldEnum[]
+}
+
+/**
+ * user.kelasAktif
+ */
+export type user$kelasAktifArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the kelas
+   */
+  select?: Prisma.kelasSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the kelas
+   */
+  omit?: Prisma.kelasOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.kelasInclude<ExtArgs> | null
+  where?: Prisma.kelasWhereInput
+}
+
+/**
+ * user.presensiGuruMapel
+ */
+export type user$presensiGuruMapelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the presensigurumapel
+   */
+  select?: Prisma.presensigurumapelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the presensigurumapel
+   */
+  omit?: Prisma.presensigurumapelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.presensigurumapelInclude<ExtArgs> | null
+  where?: Prisma.presensigurumapelWhereInput
+  orderBy?: Prisma.presensigurumapelOrderByWithRelationInput | Prisma.presensigurumapelOrderByWithRelationInput[]
+  cursor?: Prisma.presensigurumapelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PresensigurumapelScalarFieldEnum | Prisma.PresensigurumapelScalarFieldEnum[]
+}
+
+/**
+ * user.inputPresensiGuruMapel
+ */
+export type user$inputPresensiGuruMapelArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the presensigurumapel
+   */
+  select?: Prisma.presensigurumapelSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the presensigurumapel
+   */
+  omit?: Prisma.presensigurumapelOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.presensigurumapelInclude<ExtArgs> | null
+  where?: Prisma.presensigurumapelWhereInput
+  orderBy?: Prisma.presensigurumapelOrderByWithRelationInput | Prisma.presensigurumapelOrderByWithRelationInput[]
+  cursor?: Prisma.presensigurumapelWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PresensigurumapelScalarFieldEnum | Prisma.PresensigurumapelScalarFieldEnum[]
 }
 
 /**
